@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('title')
+    <title>Altversio</title>
+@endsection
+
 @section('content')
     <div class="jumbotron">
         <h1 class="display-3">Jumbo heading</h1>
