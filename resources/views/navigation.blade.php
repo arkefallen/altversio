@@ -14,7 +14,7 @@
           <a class="nav-link" href="#">About</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-outline-primary" href="#">Link</a>
+          <a class="btn btn-outline-primary" href="#">Login</a>
         </li>
       </ul>
     </div>

@@ -15,6 +15,12 @@
     <!-- Bulma -->
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"> --}}
     
+    {{-- CSS --}}
+    <link rel="stylesheet" href="{{ asset('/style/style.css') }}">
+
+    {{-- Icons --}}
+    <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
+
     @yield('title')
 </head>
 <body>
