@@ -104,22 +104,16 @@
         </div>
     </div>
     <div class="container jumbotron mt-5 pt-5 pb-5 d-flex flex-lg-row flex-column align-items-center">
-        <div class="w-100">
-            <img src="{{ asset('/asset/img/ReadingDoodle.png')}}" width="100%">
+        <div class="w-50">
+            <img src="{{ asset('/asset/img/LovingDoodle.png')}}" width="100%">
         </div>
-        <div class="ml-3">
+        <div class="ml-3 text-align-right w-50">
             <h1>
-                Jelajahi
-                <i>Alternate Universe</i>
-                sebagai <span class="text-primary">The Reader</span>
+                Bawa Altversio Bersamamu.
             </h1>
             <p class="lead">
-                Cari dan temukan AU yang kamu sukai jadi lebih mudah buat kamu 
-                <i>The Reader</i>. 
-                Dan buat kamu <i>The Creator</i>, 
-                yuk unggah konten AU-mu biar makin banyak yang tau !
+                Habiskan waktu bersama Universe yang benar-bernar kamu sukai
             </p>
-            <a class="btn btn-primary" href="#" role="button">Daftar Sekarang</a>
         </div>
     </div>
 @endsection
