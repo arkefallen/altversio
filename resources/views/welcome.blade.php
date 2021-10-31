@@ -18,7 +18,9 @@
                 Dan buat kamu <i>The Creator</i>, 
                 yuk unggah konten AU-mu biar makin banyak yang tau !
             </p>
-            <a class="btn btn-primary" href="#" role="button">Daftar Sekarang</a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+                Daftar Sekarang
+            </button>
         </div>
         <div class="w-100">
             <img src="{{ asset('/asset/img/ReadingDoodle.png')}}" width="100%">
@@ -114,6 +116,61 @@
             <p class="lead">
                 Habiskan waktu bersama Universe yang benar-bernar kamu sukai
             </p>
+        </div>
+    </div>
+
+    {{-- Modal --}}
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header d-flex flex-row-reverse justify-content-between">
+            <button type="button" class="btn " data-bs-dismiss="modal" aria-label="Close">
+                <i class="iconoir-cancel"></i>
+            </button>
+            <h4>Daftar Akun</h4>
+            </div>
+            <div class="modal-body">
+            {{-- <p class="text-grey">Yuk daftar akun dulu biar bisa jelajahi seluruh Altversio !</p> --}}
+            <form class="">
+                <div class="form-group">
+                <label for="username">Username</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                        <box-icon name='user' type='solid' color='#8c8888' ></box-icon>
+                    </span>
+                    </div>
+                    <input name="username" type="text" class="form-control" placeholder="Isi username disini..." aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                        <box-icon name='key' type='solid' color='#8c8888' ></box-icon>
+                        </span>
+                    </div>
+                    <input name="password" type="password" class="form-control" placeholder="*********" aria-label="Password" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Konfirmasi password</label>
+                    <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                        <box-icon name='check' type='solid' color='#8c8888' ></box-icon>
+                        </span>
+                    </div>
+                    <input name="confirm-password" type="password" class="form-control" placeholder="*********" aria-label="Password" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Daftar</button>
+                </div>
+            </form>
+            </div>
+        </div>
         </div>
     </div>
 @endsection
