@@ -1,5 +1,5 @@
 {{-- Navigation Bar --}}
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top">
   <div class="container">
     <a class="navbar-brand" href="#">Altversio</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
