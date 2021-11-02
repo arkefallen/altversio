@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('title')
+    <title> Jelajahi Altversio </title>
+@endsection
+
 @section('content')
     <div class="container jumbotron my-5 py-3 d-flex flex-column align-items-center">
         <h1>Hai, Jessica</h1>
@@ -91,7 +95,7 @@
                 </div>
             </div>
         </div>
-        <div class="my-3 p-3 d-flex flex-column flex-lg-row">
+        <div class="my-3 p-3 d-flex flex-column-reverse flex-lg-row">
             <div class="d-flex flex-column">
                 <h1 class="heading">Kamu menemukan karya AU yang tidak sesuai ?</h1>
                 <p class="lead">

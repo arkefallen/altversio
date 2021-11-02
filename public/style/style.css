@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
 .btn-primary {
     background-color: #A375CF !important;
+    border-radius: 50%;
 }
 
 .text-primary {
@@ -29,3 +32,33 @@
     align-items: center;
     padding: auto;
 }
+
+/* .body-text-1 {
+    font-family: 'Poppins'; 
+    font-weight: 400 ;
+    font-size: 24pt;
+}
+
+.body-text-2 {
+    font-family: 'Poppins' ; 
+    font-weight: 400;
+    font-size: 20pt;
+}
+
+.body-text-3 {
+    font-family: 'Poppins' !important; 
+    font-weight: 400 !important;
+    font-size: 16pt;
+}
+
+.heading-1 {
+    font-family: 'Poppins' !important; 
+    font-weight: 500 !important;
+    font-size: 56pt;
+}
+
+.heading-2 {
+    font-family: 'Poppins' !important; 
+    font-weight: 500 !important;
+    font-size: 5pt;
+} */

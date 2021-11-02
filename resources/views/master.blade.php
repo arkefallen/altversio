@@ -11,17 +11,18 @@
     <!-- Bootstrap JQuery -->
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
-    <!-- Bulma -->
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"> --}}
     
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('/style/style.css') }}">
 
+    {{-- Google Fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
     {{-- Icons --}}
     <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lucaburgio/iconoir@master/css/iconoir.css">
-
 
     @yield('title')
 </head>
