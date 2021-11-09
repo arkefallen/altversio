@@ -1,0 +1,31 @@
+.btn-primary {
+    background-color: #A375CF !important;
+}
+
+.text-primary {
+    color: #A375CF !important;
+}
+
+.btn-outline-primary {
+    outline-color: #A375CF !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: #A375CF !important;
+}
+
+.bg-primary {
+    background-color: #A375CF !important;
+}
+
+.circle {
+    background-color: #A375CF;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
+}
