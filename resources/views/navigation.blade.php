@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarsExample07">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Beranda</a>
+          <a class="nav-link" href="/">Beranda</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Tentang</a>
@@ -37,6 +37,7 @@
       <div class="modal-body">
         {{-- <p class="text-grey">Yuk daftar akun dulu biar bisa jelajahi seluruh Altversio !</p> --}}
         <form class="">
+          @csrf
           <div class="form-group">
             <label for="username">Username</label>
             <div class="input-group mb-3">
@@ -60,6 +61,9 @@
               </div>
           </div>
           <div class="modal-footer">
+            <p class="fs-6 lead">
+              Belum punya akun ? <a href="" data-bs-toggle="modal" data-bs-target="#registerModal" >Daftar dulu lah</a>
+            </p>
             <button type="submit" class="btn btn-primary">Masuk</button>
           </div>
         </form>

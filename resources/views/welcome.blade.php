@@ -7,7 +7,7 @@
 @section('content')
     <div class="container jumbotron mt-5 pt-5 pb-5 d-flex flex-lg-row flex-column align-items-center">
         <div class="mr-3">
-            <h1>
+            <h1 class="heading-1">
                 Jelajahi
                 <i>Alternate Universe</i>
                 sebagai <span class="text-primary">The Reader</span>
@@ -28,12 +28,12 @@
     </div>
     <div class="container my-5 px-3 d-flex flex-column align-items-center">
         <h2 class="mb-3">Kenapa Perlu Altversio ? </h2>
-        <div class="d-flex flex-column flex-md-row align-items-center">
-            <div class="d-flex flex-row justify-content-center p-4" style="margin-right: 30px">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
+            <div class="d-flex flex-row justify-content-center p-4 shadow my-2" style="margin-right: 30px;">
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAjJJREFUWEftloFNAzEMRdsJYIRjAmACjgmACSgbwASUCYAJKBMAE3BMAExA2QAmgP+kWDqF69lp1VIkLFmExnHeObaT4WDNZLhmPIM/DVQpmgfSWsp4J0X3RX+n0kb6kMZzBz4SITY/l46Cu0xkdzEvmAd0KMc30s0gjJl9aHAivS9c15tDRASYtjzpHyLAMaEIR4div5fZA4V9WGZFiMjctby8anwqbRzPteavpNstuyONw5HqAqrk4FlqxwQMG3EMEWEd4AbFuq3o+i4gQnycdi6FMeAc6lYTo8jX5EBE5621cD99bcRXbkNUH1s/EqWp5ygHIk8u0yISGKeLCEdniX6mMfnVKzkQyUfzQ4orpGOnkX6zSqVpUixFQJSyJeOuxlbanp9Z87QDCgTBFz6LgL5a1l7T9HzbfJHPfNOixUEi8/kpe7fj50DLPLJQkawyqa8VIaq4KIfaZd9oJX1oEcHHQmVfycEyGiP5g2/3+vGuDnKKKLmOsjCSvHRpyh7hfTSOhHrW5QrIRnJQCpXDvCew0EdFnx9A0frJiT6pNcnVY5HBlu7PEyQkfc1vJA/5Aw2giZRXgHVxNqe7Yw9Ql7CGq8gVrxtz9+DMjs91mAw4JoDtXuTnEJQHhKNKOpbaG6kPimriRkfJGSDa61yoCJABAEbE6gTJMQFAJNBpAsiTtwiqBKgvMt5cGGpVQACHoFYJlEN1PgBXDWRQTYrYj6P+DaDefPsH8srxP0JehL4BAal3JeYsl3kAAAAASUVORK5CYII="/>
                 <p style="margin-left: 10px; margin-bottom:0;">Mencari Karya Favorit Lebih Cepat</p>
             </div>
-            <div class="d-flex flex-row justify-content-center p-4">
+            <div class="d-flex flex-row justify-content-center p-4 shadow my-2">
                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAATBJREFUWEftl+ERgjAMhWEDN3AFN5BNxA3cQN3ADdRNcBQ3MblLuFJaXykF+qO549pead7Xl/CDusos6sx4qgKEKuJyqKFDRzn4obFDSVLuu4BuJHAVkTuNvF4tChCyujhUHEIOoP0te6gluJcNuBUQg5wE6GxCbQGkMMrBQL1TKYG8tzYcsGHetMel6yMVkC3E60EpxAUuk8YIhjdSANkwKmhCQWf00FwgW+hLifdWiVgDOpMCyHdrn2Os6SxTih5CJXBBQZjYHkIwZg9pqYJgYoBCYRTqIpOHWZZ/86lN3VKypyQMvnUoTIxDfIahGhmnaAW9O9WhoKRzXipAyD3kUEcJ+FkqRv99CGgpEM07+u9zAZmfdhZAO/msD0vTSDsMWsLl0AocfokChOzPzqEfwARhJRTYpdoAAAAASUVORK5CYII="/>
                 <p style="margin-left: 10px; margin-bottom:0;">Menjangkau Lebih Banyak</p>
             </div>
@@ -109,11 +109,11 @@
             </div>
         </div>
     </div>
-    <div class="container jumbotron mt-5 pt-5 pb-5 d-flex flex-lg-row flex-column align-items-center">
-        <div class="w-50">
+    <div class="container jumbotron mt-5 py-2 d-flex flex-lg-row flex-column align-items-center">
+        <div class="w-full">
             <img src="{{ asset('/asset/img/LovingDoodle.png')}}" width="100%">
         </div>
-        <div class="ml-3 text-align-right w-50">
+        <div class="ml-3 text-align-right w-full">
             <h1>
                 Bawa Altversio Bersamamu.
             </h1>
@@ -144,7 +144,7 @@
                         <box-icon name='user' type='solid' color='#8c8888' ></box-icon>
                     </span>
                     </div>
-                    <input name="username" type="text" class="form-control" placeholder="Isi username disini..." aria-label="Username" aria-describedby="basic-addon1">
+                    <input name="username" type="text" class="form-control" placeholder="cth : sikolektorKKPK" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 </div>
                 <div class="form-group">
@@ -170,7 +170,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Daftar</button>
+                    <p class="fs-6 lead">
+                        Sudah punya akun ? <a href="" data-bs-toggle="modal" data-bs-target="#loginModal" >Sini masuk</a>
+                    </p>
+                    <button type="submit" class="btn btn-primary w-full">Daftar</button>
                 </div>
             </form>
             </div>
