@@ -52,7 +52,7 @@
         <div class="my-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
             <div class="col mb-4">
                 <div class="card">
-                  <img src="..." class="card-img-top" alt="...">
+                  <img src="{{ asset('/asset/img/gradient.jpg') }}" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Judul AU</h5>
                     <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
@@ -63,7 +63,7 @@
             </div>
             <div class="col mb-4">
                 <div class="card">
-                  <img src="..." class="card-img-top" alt="...">
+                  <img src="{{ asset('/asset/img/gradient.jpg') }}" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Judul AU</h5>
                     <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
@@ -74,7 +74,7 @@
             </div>
             <div class="col mb-4">
                 <div class="card">
-                  <img src="..." class="card-img-top" alt="...">
+                  <img src="{{ asset('/asset/img/gradient.jpg') }}" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Judul AU</h5>
                     <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
@@ -85,7 +85,7 @@
             </div>
             <div class="col mb-4">
                 <div class="card">
-                  <img src="..." class="card-img-top" alt="...">
+                  <img src="{{ asset('/asset/img/gradient.jpg') }}" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Judul AU</h5>
                     <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
