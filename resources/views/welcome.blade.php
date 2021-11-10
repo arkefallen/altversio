@@ -39,7 +39,20 @@
             </div>
         </div>
     </div>
-    <div class="container mt-5 d-flex flex-column align-items-center">
+    <section class="container my-5 d-flex flex-md-row flex-column justify-content-center align-items-center">
+        <div class="container-fluid d-flex flex-column align-items-center">
+            <h2 class="mb-3">Langkahmu di Sini</h2>
+            <p class="lead">
+                Pijakan agar kamu tidak kehilangan arah dan tujuan
+            </p>
+        </div>
+        <div class="container-fluid d-flex flex-column flex-md-row justify-content-center">
+            <div class="p-4 d-flex flex-column">
+                <h2 class="mb-3">The Reader</h2>
+            </div>
+        </div>
+    </section>
+    {{-- <div class="container mt-5 d-flex flex-column align-items-center">
         <h2 class="mb-3">Langkahmu Di Sini</h2>
         <p class="lead">
             Pijakan agar kamu tidak kehilangan arah dan tujuan
@@ -121,7 +134,7 @@
                 Habiskan waktu bersama Universe yang benar-bernar kamu sukai
             </p>
         </div>
-    </div>
+    </div> --}}
 
     {{-- Modal --}}
     <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalTitle" aria-hidden="true">
