@@ -15,7 +15,7 @@
           <a class="nav-link" href="/about">Tentang</a>
         </li>
         <li class="nav-item">
-          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+          <button type="button" class="btn btn-outline-primary rounded-pill ml-3 py-2 px-3" data-bs-toggle="modal" data-bs-target="#loginModal">
             Masuk
           </button>
         </li>
@@ -64,7 +64,7 @@
             <p class="fs-6 lead">
               Belum punya akun ? <a href="" data-bs-toggle="modal" data-bs-target="#registerModal" >Daftar dulu lah</a>
             </p>
-            <button type="submit" class="btn btn-primary">Masuk</button>
+            <button type="submit" class="btn btn-primary rounded-pill py-2 px-3">Masuk</button>
           </div>
         </form>
       </div>
