@@ -1,4 +1,5 @@
 {{-- Navigation Bar --}}
+<script src="{{ asset('js/app.js') }}" defer></script>
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top">
   <div class="container">
     <a class="navbar-brand" href="#">Altversio</a>
@@ -14,17 +15,41 @@
         <li class="nav-item">
           <a class="nav-link" href="/about">Tentang</a>
         </li>
+        @guest 
         <li class="nav-item">
-          <button type="button" class="btn btn-outline-primary rounded-pill ml-3 py-2 px-3" data-bs-toggle="modal" data-bs-target="#loginModal">
+          <a class="btn btn-outline-primary rounded-pill ml-3 py-2 px-3" href="{{ route('login') }}">
             Masuk
-          </button>
-        </li>
+          </a>
+          @if (Route::has('register'))
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('register') }}"></a>
+            </li>
+          @endif
+        @else
+          <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+              {{ Auth::user()->name }}
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                 onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                  {{ __('Logout') }}
+              </a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
+            </div>
+          </li>
+        @endguest
       </ul>
     </div>
   </div>
 </nav>
 
-{{-- Modal --}}
+<!-- {{-- Modal --}}
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -71,4 +96,4 @@
     </div>
   </div>
 </div>
-
+ -->

@@ -18,9 +18,9 @@
                 Dan buat kamu <i>The Creator</i>, 
                 yuk unggah konten AU-mu biar makin banyak yang tau !
             </p>
-            <button type="button" class="btn btn-primary rounded-pill py-2 px-4" data-bs-toggle="modal" data-bs-target="#registerModal">
+            <a class="btn btn-primary rounded-pill py-2 px-4" href="{{ route('register') }}">
                 Daftar Sekarang
-            </button>
+            </a>
         </div>
         <div class="w-100">
             <img src="{{ asset('/asset/img/ReadingDoodle.png')}}" width="100%">
@@ -194,7 +194,7 @@
     </div>
  --}}
 
-    {{-- Modal --}}
+    <!-- {{-- Modal --}}
     <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -250,5 +250,5 @@
             </div>
         </div>
         </div>
-    </div>
+    </div> -->
 @endsection
