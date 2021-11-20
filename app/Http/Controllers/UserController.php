@@ -23,6 +23,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user');
+        return view('dashboard');
+    }
+
+    public function create()
+    {
+        return view('create');
+    }
+
+    public function store()
+    {
+        //
     }
 }

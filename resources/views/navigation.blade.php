@@ -20,35 +20,32 @@
           <a class="btn btn-outline-primary rounded-pill ml-3 py-2 px-3" href="{{ route('login') }}">
             Masuk
           </a>
-          @if (Route::has('register'))
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('register') }}"></a>
-            </li>
-          @endif
         @else
-          <li class="nav-item dropdown d-flex align-items-center">
+          <li class="nav-item dropdown">
             <li class="nav-item mx-2">
-              <a class="nav-link" href="/user">Dashboard</a>
+              <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
             <li class="nav-item mx-2">
               <a class="nav-link" href="/about">Tentang</a>
             </li>
-            <li class="nav-item mx-2 my-1">
-              <a id="karyaDropdown" class="nav-link dropdown-toggle btn btn-primary rounded-pill ml-3 py-2 px-3 text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            <li class="nav-item mx-2 mb-2">
+              <a id="karyaDropdown" class="nav-link dropdown-toggle btn btn-primary rounded-pill py-2 px-3 text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 Unggah Karyamu
               </a>
 
               <div class="dropdown-menu dropdown-menu-right ">
-                <a href="/buat-karya" class="dropdown-item">
-                  Buat Karya Baru
+                <a href="/create" class="dropdown-item d-flex align-items-center">
+                  <box-icon name='plus-circle' class="mx-1"></box-icon>
+                  <p class="mx-2" style="margin-bottom:0 !important;">Buat Karya Baru</p>
                 </a>  
 
-                <a href="/kelola-karya" class="dropdown-item">
-                  Kelola Karya
+                <a href="/manage" class="dropdown-item d-flex align-items-center">
+                  <box-icon name='edit' class="mx-1" ></box-icon>
+                  <p class="mx-2" style="margin-bottom:0 !important;">Kelola Karya</p>
                 </a>  
               </div>
             </li>
-            <li class="nav-item mx-2 my-1">
+            <li class="nav-item mx-2 mb-2">
               <a class="nav-link btn btn-outline-danger rounded-pill ml-3 py-2 px-3" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">

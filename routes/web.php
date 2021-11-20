@@ -17,8 +17,12 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 
 Auth::routes();
 
-Route::get('/user', 'UserController@index')->name('user');
+Route::get('/dashboard', 'UserController@index')->name('user');
 
 Route::get('/about', 'AboutController@index')->name('about');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/create', 'UserController@create')->name('user.create');
+
+Route::post('/dashboard', 'UserController@store')->name('user.store');

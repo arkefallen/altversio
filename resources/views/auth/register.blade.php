@@ -63,10 +63,13 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-6 offset-md-4 d-flex flex-row align-items-center">
+                                <button type="submit" class="btn btn-primary" style="margin-right: 20px !important;">
                                     {{ __('Daftar') }}
                                 </button>
+                                <p style="margin: 0px !important;">
+                                    Udah punya akun ? <a href="{{ route('login') }}">Masuk</a>
+                                </p>
                             </div>
                         </div>
                     </form>
