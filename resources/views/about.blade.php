@@ -39,8 +39,8 @@
                 <div class="col-md-6 col-lg-3 mb-4">
                   <!-- Row -->
                   <div class="row">
-                    <div class="col-md-12">
-                      <img src="{{ asset('/asset/img/asen.jpg') }}" alt="wrapkit" class="img-fluid rounded-circle" />
+                    <div class="col-md-12 d-flex justify-content-center">
+                      <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t2.jpg" alt="wrapkit" class="img-fluid rounded-circle" />
                     </div>
                     <div class="col-md-12 text-center">
                       <div class="pt-2">
@@ -58,7 +58,7 @@
                 <div class="col-md-6 col-lg-3 mb-4">
                   <!-- Row -->
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 d-flex justify-content-center">
                       <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t2.jpg" alt="wrapkit" class="img-fluid rounded-circle" />
                     </div>
                     <div class="col-md-12 text-center">
@@ -77,8 +77,8 @@
                 <div class="col-md-6 col-lg-3 mb-4">
                   <!-- Row -->
                   <div class="row">
-                    <div class="col-md-12">
-                      <img src="{{ asset('/asset/img/rafa.jpeg') }}" class="img-fluid rounded-circle"/>
+                    <div class="col-md-12 d-flex justify-content-center">
+                      <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t2.jpg" class="img-fluid rounded-circle"/>
                     </div>
                     <div class="col-md-12 text-center">
                       <div class="pt-2">
@@ -96,8 +96,8 @@
                 <div class="col-md-6 col-lg-3 mb-4">
                   <!-- Row -->
                   <div class="row">
-                    <div class="col-md-12">
-                      <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t4.jpg" alt="wrapkit" class="img-fluid rounded-circle" />
+                    <div class="col-md-12 d-flex justify-content-center">
+                      <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t2.jpg" alt="wrapkit" class="img-fluid rounded-circle" />
                     </div>
                     <div class="col-md-12 text-center">
                       <div class="pt-2">

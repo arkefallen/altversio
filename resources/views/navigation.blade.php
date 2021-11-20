@@ -9,14 +9,14 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarsExample07">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Beranda</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/about">Tentang</a>
-        </li>
         @guest 
         <li class="nav-item">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">Tentang</a>
+          </li>
           <a class="btn btn-outline-primary rounded-pill ml-3 py-2 px-3" href="{{ route('login') }}">
             Masuk
           </a>
@@ -26,22 +26,39 @@
             </li>
           @endif
         @else
-          <li class="nav-item dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-              {{ Auth::user()->name }}
-            </a>
+          <li class="nav-item dropdown d-flex align-items-center">
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="/user">Dashboard</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="/about">Tentang</a>
+            </li>
+            <li class="nav-item mx-2 my-1">
+              <a id="karyaDropdown" class="nav-link dropdown-toggle btn btn-primary rounded-pill ml-3 py-2 px-3 text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                Unggah Karyamu
+              </a>
 
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('logout') }}"
-                 onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                  {{ __('Logout') }}
+              <div class="dropdown-menu dropdown-menu-right ">
+                <a href="/buat-karya" class="dropdown-item">
+                  Buat Karya Baru
+                </a>  
+
+                <a href="/kelola-karya" class="dropdown-item">
+                  Kelola Karya
+                </a>  
+              </div>
+            </li>
+            <li class="nav-item mx-2 my-1">
+              <a class="nav-link btn btn-outline-danger rounded-pill ml-3 py-2 px-3" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
               </a>
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
               </form>
-            </div>
+            </li>
           </li>
         @endguest
       </ul>
