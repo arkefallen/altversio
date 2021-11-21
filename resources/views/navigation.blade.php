@@ -2,13 +2,13 @@
 <script src="{{ asset('js/app.js') }}" defer></script>
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="#">Altversio</a>
+    <a class="navbar-brand" href="/">Altversio</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarsExample07">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto align-items-center justify-content-center">
         @guest 
         <li class="nav-item">
           <li class="nav-item">
@@ -25,10 +25,12 @@
             <li class="nav-item mx-2">
               <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
+
             <li class="nav-item mx-2">
               <a class="nav-link" href="/about">Tentang</a>
             </li>
-            <li class="nav-item mx-2 mb-2">
+
+            <li class="nav-item mx-2 mb-2 mt-2 w-100">
               <a id="karyaDropdown" class="nav-link dropdown-toggle btn btn-primary rounded-pill py-2 px-3 text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 Unggah Karyamu
               </a>
@@ -45,7 +47,8 @@
                 </a>  
               </div>
             </li>
-            <li class="nav-item mx-2 mb-2">
+
+            <li class="nav-item mx-2 mb-2 mt-2 w-100">
               <a class="nav-link btn btn-outline-danger rounded-pill ml-3 py-2 px-3" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">
@@ -56,6 +59,7 @@
                 @csrf
               </form>
             </li>
+
           </li>
         @endguest
       </ul>

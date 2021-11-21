@@ -7,7 +7,7 @@
 @section('content')
     <div class="container my-3 py-3">
         <div class="py-3">
-            <a href="{{ route('user') }}">< Kembali</a>
+            <a href="{{ route('dashboard') }}">< Kembali</a>
             <h1 class="my-3">Buat Karya</h1>
             <hr>
             <br>
@@ -30,12 +30,90 @@
                 <div class="row g-3">
                     <div class="col-12">
                         <label for="title" class="form-label">Judul*</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="contoh : The Adventure of Gumball" value="" required="true">
+                        <input type="text" class="form-control" name="title" placeholder="contoh : The Adventure of Gumball" required="true">
                     </div>
 
                     <div class="col-12">
-                        <label for="synopsis" class="form-label">Sinopsis*</label>
-                        <textarea name="synopsis" placeholder="contoh : Pada zaman dahulu..." class="form-control w-100"></textarea>
+                        <label for="link-Prompt" class="form-label">Alamat URL Prompt*</label>
+                        <input type="url" class="form-control" name="link-prompt" placeholder="Paste-kan link prompt utama disini.." required="true">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="link-au" class="form-label">Alamat URL AU*</label>
+                        <input type="url" class="form-control" name="link-au" placeholder="Paste-kan link AU utama disini.." required="true">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="genre" class="form-label">Genre*</label>
+                        <table class="w-100">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="genre" value="Action"> Action
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="genre" value="Adventure"> Adventure
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="genre" value="Angst"> Angst
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="genre" value="Comedy"> Comedy
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="genre" value="Family"> Family
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="genre" value="Fantasy"> Fantasy
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="genre" value="Fluffy"> Fluffy
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="genre" value="Friendship"> Friendship
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="genre" value="Horror"> Horror
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="genre" value="Mystery"> Mystery
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="genre" value="Marriage Life"> Marriage Life
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="genre" value="Thriller"> Thriller
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="genre" value="Romance"> Romance
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="reader-target" class="form-label">Target Pembaca*</label>
+                        <select name="reader-target" class="form-control">
+                            <option value="-">- Pilih target pembaca -</option>
+                            <option value="junior">Minor / Remaja ( 15-18 tahun )</option>
+                            <option value="senior">Dewasa Baru (18-25 tahun )</option>
+                            <option value="adult">Dewasa ( 25+ tahun )</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="language" class="form-label">Bahasa*</label>
+                        <select name="language" class="form-control">
+                            <option value="-">- Pilih bahasa -</option>
+                            <option value="Indonesia">Indonesia</option>
+                            <option value="Inggris">Inggris</option>
+                            <option value="Tagalog">Tagalog</option>
+                        </select>
                     </div>
     
                     <button class="w-100 btn btn-primary btn-lg" type="submit">Unggah Sekarang</button>

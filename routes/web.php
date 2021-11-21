@@ -13,15 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'WelcomeController@index')->name('welcome');
-
 Auth::routes();
 
-Route::get('/dashboard', 'UserController@index')->name('user');
+Route::get('/', 'WelcomeController@index')->name('welcome');
+
+Route::get('/dashboard', 'UserController@index')->name('dashboard');
 
 Route::get('/about', 'AboutController@index')->name('about');
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/create', 'UserController@create')->name('user.create');
 

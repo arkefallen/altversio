@@ -49,50 +49,68 @@
                 </div>
             </div>
         </div>
-        <div class="my-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-            <div class="col mb-4">
-                <div class="card">
+
+        {{-- Daftar Karya --}}
+            <div class="my-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+              <div class="col mb-4">
+                <div class="card karya text-center">
                   <img src="{{ asset('/asset/img/gradient.jpg') }}" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Judul AU</h5>
                     <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
                     <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 2</span>
-                    <p class="card-text my-3">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  </div>
+                  <div class="card-footer">
+                    <a type="button" class="btn btn-primary stretched-link w-100" data-bs-toggle="modal" data-bs-target="#karyaModal">
+                      Lihat Detail
+                    </a>
                   </div>
                 </div>
             </div>
             <div class="col mb-4">
-                <div class="card">
+                <div class="card karya text-center">
                   <img src="{{ asset('/asset/img/gradient.jpg') }}" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Judul AU</h5>
                     <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
                     <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 2</span>
-                    <p class="card-text my-3">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  </div>
+                  <div class="card-footer">
+                    <a type="button" class="btn btn-primary stretched-link w-100" data-bs-toggle="modal" data-bs-target="#karyaModal">
+                      Lihat Detail
+                    </a>
                   </div>
                 </div>
             </div>
             <div class="col mb-4">
-                <div class="card">
-                  <img src="{{ asset('/asset/img/gradient.jpg') }}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Judul AU</h5>
-                    <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
-                    <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 2</span>
-                    <p class="card-text my-3">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  </div>
+              <div class="card karya text-center">
+                <img src="{{ asset('/asset/img/gradient.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Judul AU</h5>
+                  <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
+                  <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 2</span>
                 </div>
+                <div class="card-footer">
+                  <a type="button" class="btn btn-primary stretched-link w-100" data-bs-toggle="modal" data-bs-target="#karyaModal">
+                    Lihat Detail
+                  </a>
+                </div>
+              </div>
             </div>
             <div class="col mb-4">
-                <div class="card">
-                  <img src="{{ asset('/asset/img/gradient.jpg') }}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Judul AU</h5>
-                    <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
-                    <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 2</span>
-                    <p class="card-text my-3">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  </div>
+              <div class="card karya text-center">
+                <img src="{{ asset('/asset/img/gradient.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Judul AU</h5>
+                  <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
+                  <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 2</span>
                 </div>
+                <div class="card-footer">
+                  <a type="button" class="btn btn-primary stretched-link w-100" data-bs-toggle="modal" data-bs-target="#karyaModal">
+                    Lihat Detail
+                  </a>
+                </div>
+              </div>
             </div>
         </div>
         <div class="my-3 p-3 d-flex flex-column-reverse flex-lg-row">
@@ -110,5 +128,49 @@
                 <img src="{{ asset('/asset/img/SleekDoodle.png')}}" width="100%">
             </div>
         </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="karyaModal" tabindex="-1" aria-labelledby="karyaModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="karyaModalLabel">Judul AU</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body overflow-auto">
+            <img src="{{ asset('/asset/img/mesh-gradient.jpg') }}" alt="" class="img-fluid rounded"> <br> <br>
+            <div class="row">
+              <div class="col-6">
+                <h5>Judul</h5>
+                <p>The Adventure of Gumball</p>
+              </div>
+              <div class="col-6">
+                <h5>Genre</h5>
+                <p>
+                  <span class="badge badge-pill badge-primary w-10" style="background-color: grey !important;">Genre 1</span>
+                  <span class="badge badge-pill badge-primary w-10" style="background-color: grey !important;">Genre 2</span>
+                  <span class="badge badge-pill badge-primary w-10" style="background-color: grey !important;">Genre 3</span>
+                  <span class="badge badge-pill badge-primary w-10" style="background-color: grey !important;">Genre 4</span>
+                  <span class="badge badge-pill badge-primary w-10" style="background-color: grey !important;">Genre 5</span>
+                  <span class="badge badge-pill badge-primary w-10" style="background-color: grey !important;">Genre 6</span>
+                </p>
+              </div>
+              <div class="col-6">
+                <h5>Target Pembaca</h5>
+                <p>Dewasa Baru ( 18-25 Tahun )</p>
+              </div>
+              <div class="col-6">
+                <h5>Bahasa</h5>
+                <p>Indonesia</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-outline-secondary" href="#">Lihat Prompt</a>
+            <a class="btn btn-primary" href="#">Baca Sekarang</a>
+          </div>
+        </div>
+      </div>
     </div>
 @endsection
