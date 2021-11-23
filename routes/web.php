@@ -24,3 +24,7 @@ Route::get('/about', 'AboutController@index')->name('about');
 Route::get('/create', 'UserController@create')->name('user.create');
 
 Route::post('/dashboard', 'UserController@store')->name('user.store');
+
+Route::get('/manage','UserController@edit')->name('user.manage');
+
+Route::post('/manage','UserController@update')->name('user.update');

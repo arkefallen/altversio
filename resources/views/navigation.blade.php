@@ -35,14 +35,14 @@
                 Unggah Karyamu
               </a>
 
-              <div class="dropdown-menu dropdown-menu-right ">
+              <div class="dropdown-menu dropdown-menu-right shadow rounded">
                 <a href="/create" class="dropdown-item d-flex align-items-center">
-                  <box-icon name='plus-circle' class="mx-1"></box-icon>
+                  <box-icon name='plus-circle' class="mx-1" color="#A375CF"></box-icon>
                   <p class="mx-2" style="margin-bottom:0 !important;">Buat Karya Baru</p>
                 </a>  
 
                 <a href="/manage" class="dropdown-item d-flex align-items-center">
-                  <box-icon name='edit' class="mx-1" ></box-icon>
+                  <box-icon name='edit' class="mx-1" color="#A375CF" ></box-icon>
                   <p class="mx-2" style="margin-bottom:0 !important;">Kelola Karya</p>
                 </a>  
               </div>

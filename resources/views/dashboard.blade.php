@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container jumbotron my-5 py-3 d-flex flex-column align-items-center">
-        <h1>Hai, {{ Auth::user()->name }}</h1>
+        <h1>Hai, {{ Auth::user()->name }} 👋 !</h1>
         <p class="lead">Yuk cari AU favorit kamu disini !</p>
         <div class="w-full d-flex flex-column flex-md-row">
             <div class="form-group mx-2">
@@ -163,6 +163,10 @@
               <div class="col-6">
                 <h5>Bahasa</h5>
                 <p>Indonesia</p>
+              </div>
+              <div class="col-12">
+                <h5>Status</h5>
+                <p>Completed</p>
               </div>
             </div>
           </div>

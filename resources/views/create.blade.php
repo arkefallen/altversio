@@ -100,9 +100,9 @@
                         <label for="reader-target" class="form-label">Target Pembaca*</label>
                         <select name="reader-target" class="form-control">
                             <option value="-">- Pilih target pembaca -</option>
-                            <option value="junior">Minor / Remaja ( 15-18 tahun )</option>
-                            <option value="senior">Dewasa Baru (18-25 tahun )</option>
-                            <option value="adult">Dewasa ( 25+ tahun )</option>
+                            <option value="Minor / Remaja ( 15-18 tahun )">Minor / Remaja ( 15-18 tahun )</option>
+                            <option value="Dewasa Baru (18-25 tahun )">Dewasa Baru ( 18-25 tahun )</option>
+                            <option value="Dewasa ( 25+ tahun )">Dewasa ( 25+ tahun )</option>
                         </select>
                     </div>
 
@@ -114,6 +114,20 @@
                             <option value="Inggris">Inggris</option>
                             <option value="Tagalog">Tagalog</option>
                         </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="status" class="form-label">Status*</label>
+                        <table class="w-100">
+                            <tr>
+                                <td>
+                                    <input type="radio" name="status" value="On-Going"> On-Going
+                                </td>
+                                <td>
+                                    <input type="radio" name="status" value="Completed"> Completed
+                                </td>
+                            </tr>
+                        </table>
                     </div>
     
                     <button class="w-100 btn btn-primary btn-lg" type="submit">Unggah Sekarang</button>
