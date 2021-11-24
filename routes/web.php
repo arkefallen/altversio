@@ -21,6 +21,8 @@ Route::get('/dashboard', 'UserController@index')->name('dashboard');
 
 Route::get('/about', 'AboutController@index')->name('about');
 
+Route::get('/donate', 'DonateController@index')->name('donate');
+
 Route::get('/create', 'UserController@create')->name('user.create');
 
 Route::post('/dashboard', 'UserController@store')->name('user.store');

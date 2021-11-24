@@ -7,7 +7,7 @@
 @section('content')
     <div class="container my-3 py-3">
         <div class="py-3">
-            <a href="{{ route('dashboard') }}">< Kembali</a>
+            <a href="{{ route('dashboard') }}">< Kembali ke Dashboard</a>
             <h1 class="my-3">Buat Karya</h1>
             <hr>
             <br>

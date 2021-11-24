@@ -28,9 +28,11 @@
                   </div>
                   <select class="form-control custom-select" id="filterGenre">
                     <option selected>-Pilih Genre-</option>
-                    <option value="">Action</option>
-                    <option value="">Romance</option>
-                    <option value="">Horror</option>
+                    <option value="Action">Action</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Adventure">Angst</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Horror">Horror</option>
                   </select>
                 </div>
             </div>

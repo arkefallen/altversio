@@ -40,7 +40,7 @@
                   <!-- Row -->
                   <div class="row">
                     <div class="col-md-12 d-flex justify-content-center">
-                      <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t2.jpg" alt="wrapkit" class="img-fluid rounded-circle" />
+                      <img src="{{ asset('/asset/img/Asen.png') }}" alt="wrapkit" class="img-fluid rounded-circle" />
                     </div>
                     <div class="col-md-12 text-center">
                       <div class="pt-2">
@@ -59,7 +59,7 @@
                   <!-- Row -->
                   <div class="row">
                     <div class="col-md-12 d-flex justify-content-center">
-                      <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t2.jpg" alt="wrapkit" class="img-fluid rounded-circle" />
+                      <img src="{{ asset('/asset/img/Salsa.png') }}" alt="wrapkit" class="img-fluid rounded-circle" />
                     </div>
                     <div class="col-md-12 text-center">
                       <div class="pt-2">
@@ -78,7 +78,7 @@
                   <!-- Row -->
                   <div class="row">
                     <div class="col-md-12 d-flex justify-content-center">
-                      <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t2.jpg" class="img-fluid rounded-circle"/>
+                      <img src="{{ asset('/asset/img/Rafa.png') }}" class="img-fluid rounded-circle"/>
                     </div>
                     <div class="col-md-12 text-center">
                       <div class="pt-2">
@@ -97,7 +97,7 @@
                   <!-- Row -->
                   <div class="row">
                     <div class="col-md-12 d-flex justify-content-center">
-                      <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t2.jpg" alt="wrapkit" class="img-fluid rounded-circle" />
+                      <img src="{{ asset('/asset/img/Nancy.png') }}" alt="wrapkit" class="img-fluid rounded-circle" />
                     </div>
                     <div class="col-md-12 text-center">
                       <div class="pt-2">

@@ -10,14 +10,13 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarsExample07">
       <ul class="navbar-nav mr-auto align-items-center justify-content-center">
         @guest 
-        <li class="nav-item">
           <li class="nav-item">
-            <a class="nav-link" href="/">Beranda</a>
+            <a class="nav-link mx-2" href="/">Beranda</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/about">Tentang</a>
+            <a class="nav-link mx-2" href="/about">Tentang</a>
           </li>
-          <a class="btn btn-outline-primary rounded-pill ml-3 py-2 px-3" href="{{ route('login') }}">
+          <a class="btn btn-outline-primary rounded-pill mx-2 py-2 px-3 w-full" href="{{ route('login') }}">
             Masuk
           </a>
         @else
@@ -28,6 +27,10 @@
 
             <li class="nav-item mx-2">
               <a class="nav-link" href="/about">Tentang</a>
+            </li>
+
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="/donate">Donasi</a>
             </li>
 
             <li class="nav-item mx-2 mb-2 mt-2 w-100">

@@ -7,8 +7,17 @@
 @section('content')
     <div class="container my-3 py-3">
         <div class="py-3">
-            <a href="{{ route('dashboard') }}">< Kembali</a>
-            <h1 class="my-3">Kelola Karya</h1>
+            <a href="{{ route('dashboard') }}">< Kembali ke Dashboard</a>
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                <h1 class="my-3">Kelola Karya</h1>
+                <div>
+                    <a class="btn btn-primary rounded-pill py-2 px-4 d-flex flex-row align-items-center" href="/create">
+                        <box-icon name='plus-circle' class="mx-1" color="#FFFFFF"></box-icon>
+                        <span>Tambah Karya Baru</span>
+                    </a>
+                </div>
+            </div>
+
             <p class="lead">Perbarui informasi atau tambah karyamu di sini.</p>
             <br>
             <div class="table-responsive">
