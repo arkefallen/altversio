@@ -23,12 +23,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        //
     }
 
     public function create()
     {
-        return view('create');
+        //
     }
 
     public function store()
@@ -38,11 +38,11 @@ class UserController extends Controller
 
     public function edit()
     {
-        return view('manage');
+        //
     }
 
     public function update()
     {
-
+        //
     }
 }

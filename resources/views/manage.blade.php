@@ -7,11 +7,13 @@
 @section('content')
     <div class="container my-3 py-3">
         <div class="py-3">
-            <a href="{{ route('dashboard') }}">< Kembali ke Dashboard</a>
+            <a class="btn btn-outline-secondary rounded-pill py-2 px-4" href="{{ route('dashboard') }}">
+                << Kembali ke Dashboard
+            </a>
             <div class="d-flex flex-row justify-content-between align-items-center">
                 <h1 class="my-3">Kelola Karya</h1>
                 <div>
-                    <a class="btn btn-primary rounded-pill py-2 px-4 d-flex flex-row align-items-center" href="/create">
+                    <a class="btn btn-primary rounded-pill py-2 px-4 d-flex flex-row align-items-center" href="/dashboard/create">
                         <box-icon name='plus-circle' class="mx-1" color="#FFFFFF"></box-icon>
                         <span>Tambah Karya Baru</span>
                     </a>
@@ -42,34 +44,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for ($i = 0; $i < 4; $i++)
+                        @foreach ($dataKarya as $karya)
                             <tr>
                                 <td  class="d-flex flex-row align-items-center">
                                     <div>
-                                        <img src="{{ asset('/asset/img/mesh-gradient.jpg') }}" alt="" style="width: 75px; height:75px;" class="rounded">
+                                        <img src="{{ asset('/asset/tmb/'.$karya->karya->thumbnail) }}"  style="width: 75px; height:75px;" class="rounded">
                                     </div>
                                     <div class="p-4">
-                                        <h6>Judul AU</h6>
+                                        <h6>{{ $karya->karya->title }}</h6>
                                         <div style="width: 200px;">
                                             <p style="margin-bottom: 0 !important;">
-                                                <span class="badge badge-pill badge-primary w-10" style="background-color: grey !important;">Genre 1</span>
-                                                <span class="badge badge-pill badge-primary w-10" style="background-color: grey !important;">Genre 2</span>
-                                                <span class="badge badge-pill badge-primary w-10" style="background-color: grey !important;">Genre 3</span>
-                                                <span class="badge badge-pill badge-primary w-10" style="background-color: grey !important;">Genre 4</span>
-                                                <span class="badge badge-pill badge-primary w-10" style="background-color: grey !important;">Genre 5</span>
-                                                <span class="badge badge-pill badge-primary w-10" style="background-color: grey !important;">Genre 6</span>
+                                                @foreach ($karya->karya->genre as $genre)
+                                                    <span class="badge badge-pill badge-primary w-10" style="background-color: grey !important;">{{ $genre->genre->name }}</span>
+                                                @endforeach
                                             </p>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <a class="btn btn-outline-info" href="#">Lihat Prompt</a>
+                                    <a class="btn btn-outline-info" href="{{ $karya->karya->link_prompt }}">Lihat Prompt</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-outline-warning" href="#">Lihat AU</a>
+                                    <a class="btn btn-outline-warning" href="{{ $karya->karya->link_karya }}">Lihat AU</a>
                                 </td>
                                 <td>
-                                    <p style="margin-bottom: 0 !important;">Completed</p>
+                                    <p style="margin-bottom: 0 !important;">{{ $karya->karya->status }}</p>
                                 </td>
                                 <td>
                                     <div  class="d-flex flex-column flex-md-row">
@@ -82,7 +81,7 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endfor
+                        @endforeach
                     </tbody>
                   </table>
             </div>

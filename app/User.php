@@ -5,10 +5,22 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Karya;
 
 class User extends Authenticatable
 {
+    protected $table = 'users';
     use Notifiable;
+    
+    /**
+     * Get all of the karya for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function karya_user()
+    {
+        return $this->hasMany(UserKarya::class, 'karya_id', 'id');
+    }
 
     /**
      * The attributes that are mass assignable.

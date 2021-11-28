@@ -17,16 +17,24 @@ Auth::routes();
 
 Route::get('/', 'WelcomeController@index')->name('welcome');
 
-Route::get('/dashboard', 'UserController@index')->name('dashboard');
-
 Route::get('/about', 'AboutController@index')->name('about');
 
 Route::get('/donate', 'DonateController@index')->name('donate');
 
-Route::get('/create', 'UserController@create')->name('user.create');
+// Control Karya
 
-Route::post('/dashboard', 'UserController@store')->name('user.store');
+Route::get('/dashboard', 'KaryaController@index')->name('dashboard');
 
-Route::get('/manage','UserController@edit')->name('user.manage');
+Route::get('/dashboard/create', 'KaryaController@create')->name('karya.create');
 
-Route::post('/manage','UserController@update')->name('user.update');
+Route::post('/dashboard', 'KaryaController@store')->name('karya.store');
+
+Route::get('/dashboard/manage','KaryaController@show')->name('karya.manage');
+
+Route::get('/dashboard/manage/{id}','KaryaController@edit')->name('karya.edit');
+
+Route::post('/dashboard/manage/{id}','KaryaController@update')->name('karya.update');
+
+Route::post('/dashboard/manage/{id}','KaryaController@destroy')->name('karya.destroy');
+
+

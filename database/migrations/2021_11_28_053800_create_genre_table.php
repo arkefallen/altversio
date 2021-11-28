@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLevelColumnInUsersTable extends Migration
+class CreateGenreTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddLevelColumnInUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('level');
+        Schema::create('genre', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddLevelColumnInUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('level');
-        });
+        Schema::dropIfExists('genre');
     }
 }

@@ -5,6 +5,21 @@
 @endsection
 
 @section('content')
+  @if(Session::has('msg_success_store'))
+    <div class="alert alert-success">
+        {{Session::get('msg_success_store')}}
+    </div>
+    @endif
+    @if(Session::has('msg_success_update'))
+    <div class="alert alert-success">
+        {{Session::get('msg_success_update')}}
+    </div>
+    @endif
+    @if(Session::has('msg_success_remove'))
+    <div class="alert alert-success">
+        {{Session::get('msg_success_remove')}}
+    </div>
+    @endif
     <div class="container jumbotron my-5 py-3 d-flex flex-column align-items-center">
         <h1>Hai, {{ Auth::user()->name }} 👋 !</h1>
         <p class="lead">Yuk cari AU favorit kamu disini !</p>
@@ -53,68 +68,33 @@
         </div>
 
         {{-- Daftar Karya --}}
-            <div class="my-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-              <div class="col mb-4">
-                <div class="card karya text-center">
-                  <img src="{{ asset('/asset/img/gradient.jpg') }}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Judul AU</h5>
-                    <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
-                    <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 2</span>
-                  </div>
-                  <div class="card-footer">
-                    <a type="button" class="btn btn-primary stretched-link w-100" data-bs-toggle="modal" data-bs-target="#karyaModal">
-                      Lihat Detail
-                    </a>
-                  </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card karya text-center">
-                  <img src="{{ asset('/asset/img/gradient.jpg') }}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Judul AU</h5>
-                    <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
-                    <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 2</span>
-                  </div>
-                  <div class="card-footer">
-                    <a type="button" class="btn btn-primary stretched-link w-100" data-bs-toggle="modal" data-bs-target="#karyaModal">
-                      Lihat Detail
-                    </a>
-                  </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-              <div class="card karya text-center">
-                <img src="{{ asset('/asset/img/gradient.jpg') }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Judul AU</h5>
-                  <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
-                  <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 2</span>
-                </div>
-                <div class="card-footer">
-                  <a type="button" class="btn btn-primary stretched-link w-100" data-bs-toggle="modal" data-bs-target="#karyaModal">
-                    Lihat Detail
-                  </a>
-                </div>
+        
+        @if (count($dataKarya) > 0 )
+        <div class="my-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+          @foreach ($dataKarya as $karya)
+          <div class="col mb-4">
+            <div class="card karya text-center">
+              <img src="{{ asset('/asset/tmb/'.$karya->thumbnail) }}" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">{{ $karya->title }}</h5>
+                <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
+              </div>
+              <div class="card-footer">
+                <a type="button" class="btn btn-primary stretched-link w-100" data-bs-toggle="modal" data-bs-target="#karyaModal">
+                  Lihat Detail
+                </a>
               </div>
             </div>
-            <div class="col mb-4">
-              <div class="card karya text-center">
-                <img src="{{ asset('/asset/img/gradient.jpg') }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Judul AU</h5>
-                  <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 1</span>
-                  <span class="badge badge-pill badge-primary" style="background-color: grey !important;">Genre 2</span>
-                </div>
-                <div class="card-footer">
-                  <a type="button" class="btn btn-primary stretched-link w-100" data-bs-toggle="modal" data-bs-target="#karyaModal">
-                    Lihat Detail
-                  </a>
-                </div>
-              </div>
-            </div>
+          </div>
+          @endforeach
         </div>
+        @else
+        <div class="my-5 w-full text-center">
+          <h3>Karya masih kosong nih. Yuk publish karya mu !</h3>
+        </div>
+        @endif
+        
+
         <div class="my-3 p-3 d-flex flex-column-reverse flex-lg-row">
             <div class="d-flex flex-column">
                 <h1 class="heading">Kamu menemukan karya AU yang tidak sesuai ?</h1>

@@ -110,8 +110,8 @@
         </div>
     </section>
     <div class="container jumbotron mt-5 py-2 d-flex flex-lg-row flex-column align-items-center">
-        <div class="w-full">
-            <img src="{{ asset('/asset/img/LovingDoodle.png')}}" width="100%">
+        <div class="mx-5">
+            <img src="{{ asset('/asset/img/ReadingSideDoodle.png')}}" class="img-fluid">
         </div>
         <div class="ml-3 text-align-right w-full">
             <h1>

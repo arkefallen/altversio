@@ -7,7 +7,9 @@
 @section('content')
     <div class="container my-3 py-3">
         <div class="py-3">
-            <a href="{{ route('dashboard') }}">< Kembali ke Dashboard</a>
+            <a class="btn btn-outline-secondary rounded-pill py-2 px-4" href="{{ route('dashboard') }}">
+                << Kembali ke Dashboard
+            </a>
             <h1 class="my-3">Buat Karya</h1>
             <hr>
             <br>
@@ -18,7 +20,8 @@
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     Cover Thumbnail
                 </h4>
-                <form action="{{ route('user.store') }}" method="POST" class="needs-validation">
+                <form action="{{ route('karya.store') }}" method="POST" class="needs-validation">
+                @csrf
                 <ul class="list-group mb-3">
                     <label for="thumbnail" class="form-label">Unggah Gambar*</label>
                     <input type="file" class="form-control" name="thumbnail" required="true">
@@ -35,12 +38,12 @@
 
                     <div class="col-12">
                         <label for="link-Prompt" class="form-label">Alamat URL Prompt*</label>
-                        <input type="url" class="form-control" name="link-prompt" placeholder="Paste-kan link prompt utama disini.." required="true">
+                        <input type="url" class="form-control" name="link_prompt" placeholder="Paste-kan link prompt utama disini.." required="true">
                     </div>
 
                     <div class="col-12">
-                        <label for="link-au" class="form-label">Alamat URL AU*</label>
-                        <input type="url" class="form-control" name="link-au" placeholder="Paste-kan link AU utama disini.." required="true">
+                        <label for="link-karya" class="form-label">Alamat URL AU*</label>
+                        <input type="url" class="form-control" name="link_karya" placeholder="Paste-kan link AU utama disini.." required="true">
                     </div>
 
                     <div class="col-12">
@@ -48,49 +51,49 @@
                         <table class="w-100">
                             <tr>
                                 <td>
-                                    <input type="checkbox" name="genre" value="Action"> Action
+                                    <input type="checkbox" name="genre[]" value="Action"> Action
                                 </td>
                                 <td>
-                                    <input type="checkbox" name="genre" value="Adventure"> Adventure
+                                    <input type="checkbox" name="genre[]" value="Adventure"> Adventure
                                 </td>
                                 <td>
-                                    <input type="checkbox" name="genre" value="Angst"> Angst
+                                    <input type="checkbox" name="genre[]" value="Angst"> Angst
                                 </td>
                                 <td>
-                                    <input type="checkbox" name="genre" value="Comedy"> Comedy
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="genre" value="Family"> Family
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="genre" value="Fantasy"> Fantasy
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="genre" value="Fluffy"> Fluffy
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="genre" value="Friendship"> Friendship
+                                    <input type="checkbox" name="genre[]" value="Comedy"> Comedy
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="checkbox" name="genre" value="Horror"> Horror
+                                    <input type="checkbox" name="genre[]" value="Family"> Family
                                 </td>
                                 <td>
-                                    <input type="checkbox" name="genre" value="Mystery"> Mystery
+                                    <input type="checkbox" name="genre[]" value="Fantasy"> Fantasy
                                 </td>
                                 <td>
-                                    <input type="checkbox" name="genre" value="Marriage Life"> Marriage Life
+                                    <input type="checkbox" name="genre[]" value="Fluffy"> Fluffy
                                 </td>
                                 <td>
-                                    <input type="checkbox" name="genre" value="Thriller"> Thriller
+                                    <input type="checkbox" name="genre[]" value="Friendship"> Friendship
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="checkbox" name="genre" value="Romance"> Romance
+                                    <input type="checkbox" name="genre[]" value="Horror"> Horror
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="genre[]" value="Mystery"> Mystery
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="genre[]" value="Marriage Life"> Marriage Life
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="genre[]" value="Thriller"> Thriller
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="genre[]" value="Romance"> Romance
                                 </td>
                             </tr>
                         </table>
@@ -98,7 +101,7 @@
 
                     <div class="col-12">
                         <label for="reader-target" class="form-label">Target Pembaca*</label>
-                        <select name="reader-target" class="form-control">
+                        <select name="reader_target" class="form-control">
                             <option value="-">- Pilih target pembaca -</option>
                             <option value="Minor / Remaja ( 15-18 tahun )">Minor / Remaja ( 15-18 tahun )</option>
                             <option value="Dewasa Baru (18-25 tahun )">Dewasa Baru ( 18-25 tahun )</option>
