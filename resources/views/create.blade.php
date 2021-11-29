@@ -13,14 +13,15 @@
             <h1 class="my-3">Buat Karya</h1>
             <hr>
             <br>
-    
+            
             <div class="row g-5">
             <div class="col-md-5 col-lg-4 order-md-last">
                 
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     Cover Thumbnail
                 </h4>
-                <form action="{{ route('karya.store') }}" method="POST" class="needs-validation">
+                
+                <form action="{{ route('karya.store') }}" method="POST" class="needs-validation" enctype="multipart/form-data">
                 @csrf
                 <ul class="list-group mb-3">
                     <label for="thumbnail" class="form-label">Unggah Gambar*</label>
@@ -134,9 +135,16 @@
                     </div>
     
                     <button class="w-100 btn btn-primary btn-lg" type="submit">Unggah Sekarang</button>
-                </form>
+                    @if (count($errors) > 0)
+                        <ul class="alert alert-danger" style="margin-top: 20px;">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
             </div>
             </div>
+            </form>
     </div>
 @endsection

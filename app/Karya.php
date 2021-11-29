@@ -38,4 +38,5 @@ class Karya extends Model
     {
         return $this->hasMany(UserKarya::class, 'user_id', 'id');
     }
+    
 }

@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Karya;
 use App\Genre;
 use App\KaryaGenre;
+use App\User;
 use App\UserKarya;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Image;
 
 class KaryaController extends Controller
 {
@@ -27,9 +29,10 @@ class KaryaController extends Controller
     {
         $maxKarya = 12;
         $dataKarya = Karya::orderBy('id','desc')->paginate($maxKarya);
+        $genreKarya = KaryaGenre::all();
 
         $pages = $maxKarya * ($dataKarya->currentPage()-1);
-        return view('dashboard',compact('dataKarya','pages'));
+        return view('dashboard',compact('dataKarya','pages','genreKarya'));
     }
 
     /**
@@ -50,6 +53,7 @@ class KaryaController extends Controller
      */
     public function store(Request $req)
     {
+        //dd($req);
         $this->validate($req, [
             'title' => 'required|string',
             'link_prompt' => 'required|string',
@@ -58,7 +62,7 @@ class KaryaController extends Controller
             'language' => 'required',
             'status' => 'required',
             'genre' => 'required',
-            'thumbnail' => 'required|image|mimes:jpeg,jpg,png'
+            'thumbnail' => 'required|image|mimes:jpg,png,jpeg'
         ]);
 
         DB::beginTransaction();
@@ -73,102 +77,71 @@ class KaryaController extends Controller
 
             $thumbnail = $req->thumbnail;
             $imageFile = time().'.'.$thumbnail->getClientOriginalExtension();
+            
+            Image::make($thumbnail->getRealPath())->save('asset/tmb/'.$imageFile);
+            
+            // $file = $req->file('thumbnail');
+            // $folder_tujuan = 'thumbnail';
+            // $filename = time() . '_' . $file->getClientOriginalName();
+            // $karya->thumbnail = $file->move($folder_tujuan, $filename);
 
-            Image::make($thumbnail)->resize(700,525)->save('asset/tmb/'.$imageFile);
-            $thumbnail->move('thumbnail/'.$imageFile);
+            // Image::make($thumbnail)->resize(700,525)->save('asset/tmb/'.$imageFile);
+            // $thumbnail->move('thumbnail\\'.$imageFile);
 
-            $karya->thumbnail = $imageFile;
+            $karya->thumbnail = 'asset/tmb/'.$imageFile;
+
+            // dd($req);
+
+            $user_id = Auth::id();
+            $username = User::find($user_id);
+
+            $karya->author = $username->name;
 
             $karya->save();
+            $karya_id = $karya['id'];
+            // dd($karya);
+
         } catch (\Exception $e) {
             DB::rollback();
             return $e->getMessage();
         }
 
-        // try {
-        //     for ( $i=0; $i < count($req->genre); $i++) { 
-        //         $genre = new KaryaGenre;
-        //         $genre->karya_id = $karya->id;
-                
-        //         $queryGenre = Genre::find($req->genre[$i]);
+        try {
+            for ( $i=0; $i < count($req->genre); $i++) { 
+                $genre = new KaryaGenre;
+                $genre->karya_id = $karya_id;
+                $queryGenre = DB::select('select id from genre where name = ?', [$req->genre[$i]]);
+                // dd($queryGenre[0]->id);
 
-        //         $genre->genre_id = $queryGenre->id;
-        //         $genre->save();
-        //     }
-        // } catch (\Exception $e) {
-        //     DB::rollback();
-        //     return $e->getMessage();
-        // }
+                $genre->genre_id = $queryGenre[0]->id;
+                $genre->save();
+                // dd($genre);
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $e->getMessage();
+        }
 
-        // try {
-        //     $user_id = Auth::id();
+        try {
+            $user_id = Auth::id();
+            
+            $userKarya = new UserKarya;
+            
+            $userKarya->user_id = $user_id;
+            $userKarya->karya_id = $karya->id;
+            
+            $userKarya->save();
+            // dd($userKarya);
 
-        //     $userKarya = new UserKarya;
-        //     $userKarya->user_id = $user_id;
-        //     $userKarya->karya_id = $karya->id;
-
-        //     $userKarya->save();
-        // } catch (\Exception $e) {
-        //     DB::rollback();
-        //     return $e->getMessage();
-        // }
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $e->getMessage();
+        }
 
         DB::commit();
         return redirect('/dashboard')->with('msg_success_store','Selamat ! Karyamu berhasil di-publish 🤩');
     }
-    
 
-    // public function store(Request $req)
-    // {
-    //     $this->validate($req, [
-    //         'title' => 'required|string',
-    //         'link_prompt' => 'required|string',
-    //         'link_karya' => 'required|string',
-    //         'reader_target' => 'required',
-    //         'language' => 'required',
-    //         'status' => 'required',
-    //         'genre' => 'required',
-    //         'thumbnail' => 'required|image|mimes:jpeg,jpg,png'
-    //     ]);
-
-    //     $karya = new Karya;
-    //     $karya->title = $req->title;
-    //     $karya->link_prompt = $req->link_prompt;
-    //     $karya->link_karya = $req->link_karya;
-    //     $karya->reader_target = $req->reader_target;
-    //     $karya->language = $req->language;
-    //     $karya->status = $req->status;
-
-    //     $thumbnail = $req->thumbnail;
-    //     $imageFile = time().'.'.$thumbnail->getClientOriginalExtension();
-
-    //     Image::make($thumbnail)->resize(700,525)->save('asset/tmb/'.$imageFile);
-    //     $thumbnail->move('thumbnail/'.$imageFile);
-
-    //     $karya->thumbnail = $imageFile;
-
-    //     $karya->save();
-
-    //     for ( $i=0; $i < count($req->genre); $i++) { 
-    //         $genre = new KaryaGenre;
-    //         $genre->karya_id = $karya->id;
-            
-    //         $queryGenre = Genre::find($req->genre[$i]);
-
-    //         $genre->genre_id = $queryGenre->id;
-    //         $genre->save();
-    //     }
-
-    //     $user_id = Auth::id();
-
-    //     $userKarya = new UserKarya;
-    //     $userKarya->user_id = $user_id;
-    //     $userKarya->karya_id = $karya->id;
-
-    //     $userKarya->save();
-        
-    //     return redirect('/dashboard')->with('msg_success_store','Selamat ! Karyamu berhasil di-publish 🤩');
-    // }
 
     /**
      * Display the specified resource.
@@ -180,9 +153,10 @@ class KaryaController extends Controller
     {
         $maxKarya = 5;
         $user_id = Auth::id();
-        $dataKarya = UserKarya::where('user_id', $user_id);
-
-        return view('manage', compact('dataKarya'));
+        $dataKarya = UserKarya::all();
+        $genreKarya = KaryaGenre::all();
+        // dd($dataKarya);
+        return view('manage', compact('dataKarya','user_id','genreKarya'));
     }
 
     /**

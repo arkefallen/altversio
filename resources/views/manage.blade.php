@@ -45,17 +45,20 @@
                     </thead>
                     <tbody>
                         @foreach ($dataKarya as $karya)
+                            @if ($karya->user_id == $user_id)
                             <tr>
                                 <td  class="d-flex flex-row align-items-center">
                                     <div>
-                                        <img src="{{ asset('/asset/tmb/'.$karya->karya->thumbnail) }}"  style="width: 75px; height:75px;" class="rounded">
+                                        <img src="{{ asset($karya->karya->thumbnail) }}" style="width: 75px; height:75px;" class="rounded">
                                     </div>
                                     <div class="p-4">
                                         <h6>{{ $karya->karya->title }}</h6>
                                         <div style="width: 200px;">
                                             <p style="margin-bottom: 0 !important;">
-                                                @foreach ($karya->karya->genre as $genre)
-                                                    <span class="badge badge-pill badge-primary w-10" style="background-color: grey !important;">{{ $genre->genre->name }}</span>
+                                                @foreach ($genreKarya as $genre)
+                                                    @if ($genre->karya_id == $karya->karya->id)
+                                                        <span class="badge badge-pill badge-primary" style="background-color: grey !important;">{{ $genre->genre->name }}</span>
+                                                    @endif
                                                 @endforeach
                                             </p>
                                         </div>
@@ -81,6 +84,7 @@
                                     </div>
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                     </tbody>
                   </table>
