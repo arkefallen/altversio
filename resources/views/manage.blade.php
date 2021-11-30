@@ -6,6 +6,21 @@
 
 @section('content')
     <div class="container my-3 py-3">
+        @if(Session::has('msg_success_store'))
+        <div class="alert alert-success">
+            {{Session::get('msg_success_store')}}
+        </div>
+        @endif
+        @if(Session::has('msg_success_update'))
+        <div class="alert alert-success">
+            {{Session::get('msg_success_update')}}
+        </div>
+        @endif
+        @if(Session::has('msg_success_remove'))
+        <div class="alert alert-success">
+            {{Session::get('msg_success_remove')}}
+        </div>
+        @endif
         <div class="py-3">
             <a class="btn btn-outline-secondary rounded-pill py-2 px-4" href="{{ route('dashboard') }}">
                 << Kembali ke Dashboard
@@ -49,7 +64,7 @@
                             <tr>
                                 <td  class="d-flex flex-row align-items-center">
                                     <div>
-                                        <img src="{{ asset($karya->karya->thumbnail) }}" style="width: 75px; height:75px;" class="rounded">
+                                        <img src="{{ asset($karya->karya->thumbnail) }}" style="width: 128px; height:72px;" class="rounded">
                                     </div>
                                     <div class="p-4">
                                         <h6>{{ $karya->karya->title }}</h6>
@@ -76,10 +91,10 @@
                                 <td>
                                     <div  class="d-flex flex-column flex-md-row">
                                         <div class="p-2">
-                                            <a href="#" class="btn btn-success">Ubah</a>
+                                            <a href="{{ route('karya.edit',$karya->karya->id) }}" class="btn btn-success">Ubah</a>
                                         </div>
                                         <div class="p-2">
-                                            <a href="#" class="btn btn-danger">Hapus</a>
+                                            <a href="{{ route('karya.destroy',$karya->karya->id) }}" class="btn btn-danger" onclick="return confirm('Yakin ingin dihapus ?')">Hapus</a>
                                         </div>
                                     </div>
                                 </td>

@@ -38,13 +38,13 @@
                     </div>
 
                     <div class="col-12">
-                        <label for="link-Prompt" class="form-label">Alamat URL Prompt*</label>
-                        <input type="url" class="form-control" name="link_prompt" placeholder="Paste-kan link prompt utama disini.." required="true">
+                        <label for="link-Prompt" class="form-label">Alamat URL Prompt</label>
+                        <input type="url" class="form-control" name="link_prompt" placeholder="Paste-kan link URL prompt karyamu disini..">
                     </div>
 
                     <div class="col-12">
                         <label for="link-karya" class="form-label">Alamat URL AU*</label>
-                        <input type="url" class="form-control" name="link_karya" placeholder="Paste-kan link AU utama disini.." required="true">
+                        <input type="url" class="form-control" name="link_karya" placeholder="Paste-kan link URL AU kamu disini.." required="true">
                     </div>
 
                     <div class="col-12">

@@ -6,21 +6,6 @@
 
 @section('content')
     <div class="container jumbotron my-5 py-3 d-flex flex-column align-items-center">
-      @if(Session::has('msg_success_store'))
-      <div class="alert alert-success">
-          {{Session::get('msg_success_store')}}
-      </div>
-      @endif
-      @if(Session::has('msg_success_update'))
-      <div class="alert alert-success">
-          {{Session::get('msg_success_update')}}
-      </div>
-      @endif
-      @if(Session::has('msg_success_remove'))
-      <div class="alert alert-success">
-          {{Session::get('msg_success_remove')}}
-      </div>
-      @endif
         <h1>Hai, {{ Auth::user()->name }} 👋 !</h1>
         <p class="lead">Yuk cari AU favorit kamu disini !</p>
         <div class="w-full d-flex flex-column flex-md-row">
@@ -70,9 +55,9 @@
         {{-- Daftar Karya --}}
         
         @if (count($dataKarya) > 0 )
-        
+        <div class="my-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
           @foreach ($dataKarya as $karya)
-          <div class="my-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+          
           <div class="col mb-4">
             <div class="card karya">
               <img src="{{ asset($karya->thumbnail) }}" class="card-img-top" data-thumbnail="{{ asset($karya->thumbnail) }}">
@@ -110,18 +95,20 @@
               <span data-language="{{ $karya->language }}"></span>
               <span data-status="{{ $karya->status }}"></span> --}}
               <div class="card-footer grid">
-                <a type="button" class="btn btn-outline-primary g-col-6 w-100 my-1" href="{{ $karya->link_prompt }}" target="_blank">
-                  Lihat Prompt
-                </a>
+                @if ($karya->link_prompt != '-')
+                  <a type="button" class="btn btn-outline-primary g-col-6 w-100 my-1" href="{{ $karya->link_prompt }}" target="_blank">
+                    Lihat Prompt
+                  </a>
+                @endif
                 <a type="button" class="btn btn-primary g-col-6 w-100 my-1" href="{{ $karya->link_karya }}" target="_blank">
                   Baca Sekarang
                 </a>
               </div>
             </div>
           </div>
-          </div>
+          
           @endforeach
-        
+        </div>
         @else
         <div class="my-5 w-full text-center">
           <h3>Karya masih kosong nih. Yuk publish karya mu !</h3>

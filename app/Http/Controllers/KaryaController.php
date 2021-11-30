@@ -56,7 +56,6 @@ class KaryaController extends Controller
         //dd($req);
         $this->validate($req, [
             'title' => 'required|string',
-            'link_prompt' => 'required|string',
             'link_karya' => 'required|string',
             'reader_target' => 'required',
             'language' => 'required',
@@ -69,7 +68,13 @@ class KaryaController extends Controller
         try {
             $karya = new Karya;
             $karya->title = $req->title;
-            $karya->link_prompt = $req->link_prompt;
+
+            if ($req->link_prompt == null) {
+                $karya->link_prompt = '-';
+            } else {
+                $karya->link_prompt = $req->link_prompt;
+            }
+
             $karya->link_karya = $req->link_karya;
             $karya->reader_target = $req->reader_target;
             $karya->language = $req->language;
@@ -78,7 +83,7 @@ class KaryaController extends Controller
             $thumbnail = $req->thumbnail;
             $imageFile = time().'.'.$thumbnail->getClientOriginalExtension();
             
-            Image::make($thumbnail->getRealPath())->save('asset/tmb/'.$imageFile);
+            Image::make($thumbnail->getRealPath())->resize(1280,720)->save('asset/tmb/'.$imageFile);
             
             // $file = $req->file('thumbnail');
             // $folder_tujuan = 'thumbnail';
@@ -139,7 +144,7 @@ class KaryaController extends Controller
         }
 
         DB::commit();
-        return redirect('/dashboard')->with('msg_success_store','Selamat ! Karyamu berhasil di-publish 🤩');
+        return redirect('/dashboard/manage')->with('msg_success_store','Selamat ! Karyamu berhasil di-publish 🤩');
     }
 
 
@@ -167,7 +172,11 @@ class KaryaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $karya = Karya::find($id);
+        $genreKarya = KaryaGenre::all();
+        $karya_id = $id;
+        // dd($karya);
+        return view('edit', compact('karya','genreKarya','karya_id'));
     }
 
     /**
@@ -177,9 +186,105 @@ class KaryaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $req, $id)
     {
-        //
+        $this->validate($req, [
+            'title' => 'required|string',
+            'link_prompt' => 'required|string',
+            'link_karya' => 'required|string',
+            'reader_target' => 'required',
+            'language' => 'required',
+            'status' => 'required',
+            'genre' => 'required',
+        ]);
+
+        // Ganti Info Karya tanpa Genre
+        DB::beginTransaction();
+        try {
+
+            $karya = Karya::find($id);
+            $karya->title = $req->title;
+            $karya->link_prompt = $req->link_prompt;
+            $karya->link_karya = $req->link_karya;
+            $karya->reader_target = $req->reader_target;
+            $karya->language = $req->language;
+            $karya->status = $req->status;
+
+            if ($req->thumbnail != null) {
+                $thumbnail = $req->thumbnail;
+                $imageFile = time().'.'.$thumbnail->getClientOriginalExtension();
+                Image::make($thumbnail->getRealPath())->resize(1280,720)->save('asset/tmb/'.$imageFile);
+                $karya->thumbnail = 'asset/tmb/'.$imageFile;
+            }
+
+            $karya->update();
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+        
+        $karya_id = $id;
+
+        // Ganti Genre Karya
+        try {
+            
+            $queryKaryaGenre = KaryaGenre::with('genre')->get();
+            
+            $name_nowGenreKarya = array();
+            foreach ($queryKaryaGenre as $kg ) {
+                if ($kg->karya_id == $id && $kg->genre->id == $kg->genre_id) {
+                    array_push($name_nowGenreKarya,$kg->genre->name);
+                }
+            }
+            
+            for ( $i=0 ; $i < count($req->genre); $i++) { 
+                if ( !in_array($req->genre[$i],$name_nowGenreKarya) ) {
+                    $genre = new KaryaGenre;
+
+                    $genre->karya_id = $karya_id;
+
+                    $queryGenre = Genre::where('name','=',$req->genre[$i])->get();
+    
+                    $genre->genre_id = $queryGenre[0]->id;
+                    
+                    $genre->save();
+                }
+            }  
+
+            $updatedKaryaGenre = KaryaGenre::with('genre')->get();
+
+            $name_updatedKaryaGenre = array();
+
+            foreach ($updatedKaryaGenre as $ukg ) {
+                if ($ukg->karya_id == $id && $ukg->genre->id == $ukg->genre_id) {
+                    array_push($name_updatedKaryaGenre,$ukg->genre->name);
+                }
+            }
+            
+            for ( $i=0 ; $i < count($name_updatedKaryaGenre); $i++) { 
+                if ( !in_array($name_updatedKaryaGenre[$i],$req->genre) ) {
+                    $query_willDeleted_genreKarya = KaryaGenre::with('genre')->get();
+
+                    
+                    foreach ($query_willDeleted_genreKarya as $qwd ) {
+                        if ($qwd->genre->name == $name_updatedKaryaGenre[$i] && $qwd->karya_id == $karya_id) {
+                            $id_deleted_genreKarya = $qwd->id;
+                        }
+                    }
+
+                    $deleted_genre = KaryaGenre::find($id_deleted_genreKarya);
+
+                    $deleted_genre->delete();
+                }
+            }  
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $e->getMessage();
+        }
+
+        DB::commit();
+        return redirect ('/dashboard/manage')->with('msg_success_update', 'Yeee ! Karyamu berhasil di-update 🤩');
     }
 
     /**
@@ -190,6 +295,8 @@ class KaryaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $karya = Karya::find($id);
+        $karya->delete();
+        return redirect ('/dashboard/manage')->with('msg_success_remove', 'Sayang banget, Karyamu dihapus 😥');
     }
 }

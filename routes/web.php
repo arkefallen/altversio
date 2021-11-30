@@ -31,10 +31,10 @@ Route::post('/dashboard', 'KaryaController@store')->name('karya.store');
 
 Route::get('/dashboard/manage','KaryaController@show')->name('karya.manage');
 
-Route::get('/dashboard/manage/{id}','KaryaController@edit')->name('karya.edit');
+Route::get('/dashboard/edit/{id}','KaryaController@edit')->name('karya.edit');
 
-Route::post('/dashboard/manage/{id}','KaryaController@update')->name('karya.update');
+Route::post('/dashboard/update/{id}','KaryaController@update')->name('karya.update');
 
-Route::post('/dashboard/manage/{id}','KaryaController@destroy')->name('karya.destroy');
+Route::get('/dashboard/destroy/{id}','KaryaController@destroy')->name('karya.destroy');
 
 
