@@ -28,11 +28,53 @@ class KaryaController extends Controller
     public function index()
     {
         $maxKarya = 12;
-        $dataKarya = Karya::orderBy('id','desc')->paginate($maxKarya);
-        $genreKarya = KaryaGenre::all();
+        
+        $dataKarya = Karya::with('karyaGenre')->paginate($maxKarya);
 
         $pages = $maxKarya * ($dataKarya->currentPage()-1);
-        return view('dashboard',compact('dataKarya','pages','genreKarya'));
+
+        return view('dashboard',compact('dataKarya','pages'));
+    }
+
+    public function search(Request $req) 
+    {
+        // dd($req);
+        $maxKarya = 12;
+        if ( $req->search_karya == null
+            && $req->search_filter == '-') {
+
+            $dataKarya = Karya::with('karyaGenre')->paginate($maxKarya);
+            
+        } elseif ($req->search_karya != null
+                && $req->search_filter == '-') {
+
+            $dataKarya = Karya::where('title','like',"%".$req->search_karya."%")->paginate($maxKarya);
+            
+
+        } elseif ($req->search_karya == null
+                && $req->search_filter != '-') {
+
+            if ($req->search_filter == 'az') {
+                $dataKarya = Karya::orderBy('title','asc')->paginate($maxKarya);
+            } elseif ($req->search_filter == 'za') {
+                $dataKarya = Karya::orderBy('title','desc')->paginate($maxKarya);
+            } else {
+                $dataKarya = Karya::orderBy('id','desc')->paginate($maxKarya);
+            }
+
+        } else {
+            if ($req->search_filter == 'az') {
+                $dataKarya = Karya::where('title','like',"%".$req->search_karya."%")->orderBy('title','asc')->paginate($maxKarya);
+            } elseif ($req->search_filter == 'za') {
+                $dataKarya = Karya::where('title','like',"%".$req->search_karya."%")->orderBy('title','desc')->paginate($maxKarya);
+            } else {
+                $dataKarya = Karya::where('title','like',"%".$req->search_karya."%")->orderBy('id','desc')->paginate($maxKarya);
+            }
+
+        }
+
+        $pages = $maxKarya * ($dataKarya->currentPage()-1);
+        return view('dashboard',compact('dataKarya','pages'));
     }
 
     /**
@@ -65,6 +107,7 @@ class KaryaController extends Controller
         ]);
 
         DB::beginTransaction();
+
         try {
             $karya = new Karya;
             $karya->title = $req->title;
@@ -85,26 +128,15 @@ class KaryaController extends Controller
             
             Image::make($thumbnail->getRealPath())->resize(1280,720)->save('asset/tmb/'.$imageFile);
             
-            // $file = $req->file('thumbnail');
-            // $folder_tujuan = 'thumbnail';
-            // $filename = time() . '_' . $file->getClientOriginalName();
-            // $karya->thumbnail = $file->move($folder_tujuan, $filename);
-
-            // Image::make($thumbnail)->resize(700,525)->save('asset/tmb/'.$imageFile);
-            // $thumbnail->move('thumbnail\\'.$imageFile);
 
             $karya->thumbnail = 'asset/tmb/'.$imageFile;
 
-            // dd($req);
-
             $user_id = Auth::id();
-            $username = User::find($user_id);
 
-            $karya->author = $username->name;
+            $karya->author_id = $user_id;
 
             $karya->save();
             $karya_id = $karya['id'];
-            // dd($karya);
 
         } catch (\Exception $e) {
             DB::rollback();
@@ -116,28 +148,10 @@ class KaryaController extends Controller
                 $genre = new KaryaGenre;
                 $genre->karya_id = $karya_id;
                 $queryGenre = DB::select('select id from genre where name = ?', [$req->genre[$i]]);
-                // dd($queryGenre[0]->id);
 
                 $genre->genre_id = $queryGenre[0]->id;
                 $genre->save();
-                // dd($genre);
             }
-        } catch (\Exception $e) {
-            DB::rollback();
-            return $e->getMessage();
-        }
-
-        try {
-            $user_id = Auth::id();
-            
-            $userKarya = new UserKarya;
-            
-            $userKarya->user_id = $user_id;
-            $userKarya->karya_id = $karya->id;
-            
-            $userKarya->save();
-            // dd($userKarya);
-
         } catch (\Exception $e) {
             DB::rollback();
             return $e->getMessage();
@@ -158,10 +172,10 @@ class KaryaController extends Controller
     {
         $maxKarya = 5;
         $user_id = Auth::id();
-        $dataKarya = UserKarya::all();
-        $genreKarya = KaryaGenre::all();
-        // dd($dataKarya);
-        return view('manage', compact('dataKarya','user_id','genreKarya'));
+
+        $dataKarya = Karya::with('karyaGenre','user')->where('author_id',$user_id)->paginate($maxKarya);
+
+        return view('manage', compact('dataKarya'));
     }
 
     /**
@@ -172,8 +186,9 @@ class KaryaController extends Controller
      */
     public function edit($id)
     {
-        $karya = Karya::find($id);
+        $karya = Karya::with('karyaGenre')->find($id);
         $genreKarya = KaryaGenre::all();
+        // dd($genreKarya[1]->genre->name);
         $karya_id = $id;
         // dd($karya);
         return view('edit', compact('karya','genreKarya','karya_id'));
@@ -190,7 +205,6 @@ class KaryaController extends Controller
     {
         $this->validate($req, [
             'title' => 'required|string',
-            'link_prompt' => 'required|string',
             'link_karya' => 'required|string',
             'reader_target' => 'required',
             'language' => 'required',
@@ -231,9 +245,10 @@ class KaryaController extends Controller
             
             $queryKaryaGenre = KaryaGenre::with('genre')->get();
             
+            // Kalau ada genre baru ditambahkan
             $name_nowGenreKarya = array();
             foreach ($queryKaryaGenre as $kg ) {
-                if ($kg->karya_id == $id && $kg->genre->id == $kg->genre_id) {
+                if ($kg->karya_id == $karya_id && $kg->genre->id == $kg->genre_id) {
                     array_push($name_nowGenreKarya,$kg->genre->name);
                 }
             }
@@ -251,11 +266,13 @@ class KaryaController extends Controller
                     $genre->save();
                 }
             }  
-
+            
+            // Kalau mau hapus genre yang ada
             $updatedKaryaGenre = KaryaGenre::with('genre')->get();
 
             $name_updatedKaryaGenre = array();
 
+            // Ngambil genre baru yang udah terupdate
             foreach ($updatedKaryaGenre as $ukg ) {
                 if ($ukg->karya_id == $id && $ukg->genre->id == $ukg->genre_id) {
                     array_push($name_updatedKaryaGenre,$ukg->genre->name);
@@ -263,11 +280,16 @@ class KaryaController extends Controller
             }
             
             for ( $i=0 ; $i < count($name_updatedKaryaGenre); $i++) { 
+                //  Cek apakah genre di query terupdate ada gak di request
                 if ( !in_array($name_updatedKaryaGenre[$i],$req->genre) ) {
+
+                    // Ambil query genre yang lama
                     $query_willDeleted_genreKarya = KaryaGenre::with('genre')->get();
 
                     
                     foreach ($query_willDeleted_genreKarya as $qwd ) {
+
+                        // kalo nama genre yang lama sama dengan nama genre yang udah diupdate
                         if ($qwd->genre->name == $name_updatedKaryaGenre[$i] && $qwd->karya_id == $karya_id) {
                             $id_deleted_genreKarya = $qwd->id;
                         }

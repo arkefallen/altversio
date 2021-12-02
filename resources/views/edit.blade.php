@@ -46,7 +46,13 @@
 
                     <div class="col-12">
                         <label for="link-Prompt" class="form-label">Alamat URL Prompt</label>
-                        <input type="url" class="form-control" name="link_prompt" placeholder="Paste-kan link prompt utama disini.." required="true" value="{{ $karya->link_prompt }}">
+                        <input 
+                            @if ($karya->link_prompt == '-')
+                                type="text"
+                            @else
+                                type="url"
+                            @endif
+                        class="form-control" name="link_prompt" placeholder="Paste-kan link prompt utama disini.." value="{{ $karya->link_prompt }}">
                     </div>
 
                     <div class="col-12">
@@ -57,157 +63,157 @@
                     <div class="col-12">
                         <label for="genre" class="form-label">Genre</label>
                         <table class="w-100">
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="genre[]" value="Action"
-                                    @foreach ($genreKarya as $genre)
-                                        @if ($genre->karya_id == $karya_id)
-                                            @if($genre->genre->name == 'Action')
-                                                checked
-                                            @endif
-                                        @endif
-                                    @endforeach
-                                    > Action
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="genre[]" value="Adventure"
-                                    @foreach ($genreKarya as $genre)
-                                    @if ($genre->karya_id == $karya_id)
-                                        @if($genre->genre->name == 'Adventure')
-                                            checked
-                                        @endif
-                                    @endif
-                                    @endforeach
-                                    > Adventure
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="genre[]" value="Angst"
-                                    @foreach ($genreKarya as $genre)
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="genre[]" value="Action"
+                                @foreach ($genreKarya as $genre)
                                     @if ($genre->karya_id == $karya_id)
                                         @if($genre->genre->name == 'Angst')
                                             checked
                                         @endif
                                     @endif
-                                    @endforeach
-                                    > Angst
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="genre[]" value="Comedy"
-                                    @foreach ($genreKarya as $genre)
+                                @endforeach
+                                > Action
+                            </td>
+                            <td>
+                                <input type="checkbox" name="genre[]" value="Adventure"
+                                @foreach ($genreKarya as $genre)
                                     @if ($genre->karya_id == $karya_id)
-                                        @if($genre->genre->name == 'Comedy')
+                                        @if($genre->genre->name == 'Angst')
                                             checked
                                         @endif
                                     @endif
-                                    @endforeach
-                                    > Comedy
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="genre[]" value="Family"
-                                    @foreach ($genreKarya as $genre)
-                                    @if ($genre->karya_id == $karya_id)
-                                        @if($genre->genre->name == 'Family')
-                                            checked
-                                        @endif
+                                @endforeach
+                                > Adventure
+                            </td>
+                            <td>
+                                <input type="checkbox" name="genre[]" value="Angst"
+                                @foreach ($genreKarya as $genre)
+                                @if ($genre->karya_id == $karya_id)
+                                    @if($genre->genre->name == 'Angst')
+                                        checked
                                     @endif
-                                    @endforeach
-                                    > Family
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="genre[]" value="Fantasy"
-                                    @foreach ($genreKarya as $genre)
-                                    @if ($genre->karya_id == $karya_id)
-                                        @if($genre->genre->name == 'Fantasy')
-                                            checked
-                                        @endif
+                                @endif
+                                @endforeach
+                                > Angst
+                            </td>
+                            <td>
+                                <input type="checkbox" name="genre[]" value="Comedy"
+                                @foreach ($genreKarya as $genre)
+                                @if ($genre->karya_id == $karya_id)
+                                    @if($genre->genre->name == 'Comedy')
+                                        checked
                                     @endif
-                                    @endforeach
-                                    > Fantasy
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="genre[]" value="Fluffy"
-                                    @foreach ($genreKarya as $genre)
-                                    @if ($genre->karya_id == $karya_id)
-                                        @if($genre->genre->name == 'Fluffy')
-                                            checked
-                                        @endif
+                                @endif
+                                @endforeach
+                                > Comedy
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="genre[]" value="Family"
+                                @foreach ($genreKarya as $genre)
+                                @if ($genre->karya_id == $karya_id)
+                                    @if($genre->genre->name == 'Family')
+                                        checked
                                     @endif
-                                    @endforeach
-                                    > Fluffy
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="genre[]" value="Friendship"
-                                    @foreach ($genreKarya as $genre)
-                                    @if ($genre->karya_id == $karya_id)
-                                        @if($genre->genre->name == 'Friendship')
-                                            checked
-                                        @endif
+                                @endif
+                                @endforeach
+                                > Family
+                            </td>
+                            <td>
+                                <input type="checkbox" name="genre[]" value="Fantasy"
+                                @foreach ($genreKarya as $genre)
+                                @if ($genre->karya_id == $karya_id)
+                                    @if($genre->genre->name == 'Fantasy')
+                                        checked
                                     @endif
-                                    @endforeach
-                                    > Friendship
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="genre[]" value="Horror"
-                                    @foreach ($genreKarya as $genre)
-                                    @if ($genre->karya_id == $karya_id)
-                                        @if($genre->genre->name == 'Horror')
-                                            checked
-                                        @endif
+                                @endif
+                                @endforeach
+                                > Fantasy
+                            </td>
+                            <td>
+                                <input type="checkbox" name="genre[]" value="Fluffy"
+                                @foreach ($genreKarya as $genre)
+                                @if ($genre->karya_id == $karya_id)
+                                    @if($genre->genre->name == 'Fluffy')
+                                        checked
                                     @endif
-                                    @endforeach
-                                    > Horror
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="genre[]" value="Mystery"
-                                    @foreach ($genreKarya as $genre)
-                                    @if ($genre->karya_id == $karya_id)
-                                        @if($genre->genre->name == 'Mystery')
-                                            checked
-                                        @endif
+                                @endif
+                                @endforeach
+                                > Fluffy
+                            </td>
+                            <td>
+                                <input type="checkbox" name="genre[]" value="Friendship"
+                                @foreach ($genreKarya as $genre)
+                                @if ($genre->karya_id == $karya_id)
+                                    @if($genre->genre->name == 'Friendship')
+                                        checked
                                     @endif
-                                    @endforeach
-                                    > Mystery
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="genre[]" value="Marriage Life"
-                                    @foreach ($genreKarya as $genre)
-                                    @if ($genre->karya_id == $karya_id)
-                                        @if($genre->genre->name == 'Marriage Life')
-                                            checked
-                                        @endif
+                                @endif
+                                @endforeach
+                                > Friendship
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="genre[]" value="Horror"
+                                @foreach ($genreKarya as $genre)
+                                @if ($genre->karya_id == $karya_id)
+                                    @if($genre->genre->name == 'Horror')
+                                        checked
                                     @endif
-                                    @endforeach
-                                    > Marriage Life
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="genre[]" value="Thriller"
-                                    @foreach ($genreKarya as $genre)
-                                    @if ($genre->karya_id == $karya_id)
-                                        @if($genre->genre->name == 'Thriller')
-                                            checked
-                                        @endif
+                                @endif
+                                @endforeach
+                                > Horror
+                            </td>
+                            <td>
+                                <input type="checkbox" name="genre[]" value="Mystery"
+                                @foreach ($genreKarya as $genre)
+                                @if ($genre->karya_id == $karya_id)
+                                    @if($genre->genre->name == 'Mystery')
+                                        checked
                                     @endif
-                                    @endforeach
-                                    > Thriller
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="genre[]" value="Romance"
-                                    @foreach ($genreKarya as $genre)
-                                    @if ($genre->karya_id == $karya_id)
-                                        @if($genre->genre->name == 'Romance')
-                                            checked
-                                        @endif
+                                @endif
+                                @endforeach
+                                > Mystery
+                            </td>
+                            <td>
+                                <input type="checkbox" name="genre[]" value="Marriage Life"
+                                @foreach ($genreKarya as $genre)
+                                @if ($genre->karya_id == $karya_id)
+                                    @if($genre->genre->name == 'Marriage Life')
+                                        checked
                                     @endif
-                                    @endforeach
-                                    > Romance
-                                </td>
-                            </tr>
+                                @endif
+                                @endforeach
+                                > Marriage Life
+                            </td>
+                            <td>
+                                <input type="checkbox" name="genre[]" value="Thriller"
+                                @foreach ($genreKarya as $genre)
+                                @if ($genre->karya_id == $karya_id)
+                                    @if($genre->genre->name == 'Thriller')
+                                        checked
+                                    @endif
+                                @endif
+                                @endforeach
+                                > Thriller
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="genre[]" value="Romance"
+                                @foreach ($genreKarya as $genre)
+                                @if ($genre->karya_id == $karya_id)
+                                    @if($genre->genre->name == 'Romance')
+                                        checked
+                                    @endif
+                                @endif
+                                @endforeach
+                                > Romance
+                            </td>
+                        </tr>
                         </table>
                     </div>
 

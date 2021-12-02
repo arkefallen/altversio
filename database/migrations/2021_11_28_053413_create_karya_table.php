@@ -17,11 +17,13 @@ class CreateKaryaTable extends Migration
             $table->id();
             $table->string('thumbnail');
             $table->string('title');
-            $table->string('link-prompt');
-            $table->string('link-karya');
-            $table->string('reader-target');
+            $table->string('link_prompt');
+            $table->string('link_karya');
+            $table->string('reader_target');
             $table->string('language');
             $table->string('status');
+            $table->unsignedBigInteger('author_id');
+            $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

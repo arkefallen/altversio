@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Karya;
 use App\Genre;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class KaryaGenre extends Model
 {
@@ -20,6 +21,7 @@ class KaryaGenre extends Model
     {
         return $this->belongsTo(Karya::class, 'karya_id', 'id');
     }
+
 
     /**
      * Get the genre that owns the genre-karya

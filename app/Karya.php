@@ -24,9 +24,9 @@ class Karya extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function genre_karya()
+    public function karyaGenre()
     {
-        return $this->hasMany(KaryaGenre::class, 'karya_id', 'id');
+        return $this->hasMany(KaryaGenre::class,'karya_id','id');
     }
 
     /**
@@ -34,9 +34,9 @@ class Karya extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function user_karya()
+    public function user()
     {
-        return $this->hasMany(UserKarya::class, 'user_id', 'id');
+        return $this->belongsTo(User::class,'author_id','id');
     }
     
 }

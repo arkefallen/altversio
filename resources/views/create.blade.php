@@ -24,7 +24,9 @@
                 <form action="{{ route('karya.store') }}" method="POST" class="needs-validation" enctype="multipart/form-data">
                 @csrf
                 <ul class="list-group mb-3">
-                    <label for="thumbnail" class="form-label">Unggah Gambar*</label>
+                    <label for="thumbnail" class="form-label alert alert-warning">
+                        <b>Syarat : Rasio 16:9 & Landscape</b>
+                    </label>
                     <input type="file" class="form-control" name="thumbnail" required="true">
                 </ul>
     

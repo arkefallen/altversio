@@ -15,8 +15,8 @@ class Genre extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function karya(): HasMany
+    public function karya()
     {
-        return $this->hasMany(KaryaGenre::class, 'genre_id', 'id');
+        return $this->hasMany(KaryaGenre::class,'genre_id','id');
     }
 }

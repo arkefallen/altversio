@@ -65,7 +65,7 @@
                       <div class="pt-2">
                         <h5 class="mt-4 font-weight-medium mb-0">Salsabila Riskiani Gusti Putri</h5>
                         <p class="text-secondary mb-3">
-                          <i>System Analyst</i>
+                          <i>System Analyst & Graphic Designer</i>
                         </p>
                       </div>
                     </div>

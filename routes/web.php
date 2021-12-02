@@ -25,6 +25,8 @@ Route::get('/donate', 'DonateController@index')->name('donate');
 
 Route::get('/dashboard', 'KaryaController@index')->name('dashboard');
 
+Route::get('/dashboard/search', 'KaryaController@search')->name('karya.search');
+
 Route::get('/dashboard/create', 'KaryaController@create')->name('karya.create');
 
 Route::post('/dashboard', 'KaryaController@store')->name('karya.store');

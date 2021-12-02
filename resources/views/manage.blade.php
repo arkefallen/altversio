@@ -60,18 +60,17 @@
                     </thead>
                     <tbody>
                         @foreach ($dataKarya as $karya)
-                            @if ($karya->user_id == $user_id)
                             <tr>
                                 <td  class="d-flex flex-row align-items-center">
                                     <div>
-                                        <img src="{{ asset($karya->karya->thumbnail) }}" style="width: 128px; height:72px;" class="rounded">
+                                        <img src="{{ asset($karya->thumbnail) }}" style="width: 128px; height:72px;" class="rounded">
                                     </div>
                                     <div class="p-4">
-                                        <h6>{{ $karya->karya->title }}</h6>
+                                        <h6>{{ $karya->title }}</h6>
                                         <div style="width: 200px;">
                                             <p style="margin-bottom: 0 !important;">
-                                                @foreach ($genreKarya as $genre)
-                                                    @if ($genre->karya_id == $karya->karya->id)
+                                                @foreach ($karya->karyaGenre as $genre)
+                                                    @if ($genre->genre_id == $genre->genre->id)
                                                         <span class="badge badge-pill badge-primary" style="background-color: grey !important;">{{ $genre->genre->name }}</span>
                                                     @endif
                                                 @endforeach
@@ -80,26 +79,29 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a class="btn btn-outline-info" href="{{ $karya->karya->link_prompt }}">Lihat Prompt</a>
+                                    @if ($karya->link_prompt == '-')
+                                        <button class="btn btn-outline-info" disabled>Tidak ada prompt</button>
+                                    @else
+                                        <a class="btn btn-outline-info" href="{{ $karya->link_prompt }}">Lihat Prompt</a>
+                                    @endif
                                 </td>
                                 <td>
-                                    <a class="btn btn-outline-warning" href="{{ $karya->karya->link_karya }}">Lihat AU</a>
+                                    <a class="btn btn-outline-warning" href="{{ $karya->link_karya }}">Lihat AU</a>
                                 </td>
                                 <td>
-                                    <p style="margin-bottom: 0 !important;">{{ $karya->karya->status }}</p>
+                                    <p style="margin-bottom: 0 !important;">{{ $karya->status }}</p>
                                 </td>
                                 <td>
                                     <div  class="d-flex flex-column flex-md-row">
                                         <div class="p-2">
-                                            <a href="{{ route('karya.edit',$karya->karya->id) }}" class="btn btn-success">Ubah</a>
+                                            <a href="{{ route('karya.edit', $karya->id) }}" class="btn btn-success">Ubah</a>
                                         </div>
                                         <div class="p-2">
-                                            <a href="{{ route('karya.destroy',$karya->karya->id) }}" class="btn btn-danger" onclick="return confirm('Yakin ingin dihapus ?')">Hapus</a>
+                                            <a href="{{ route('karya.destroy', $karya->id) }}" class="btn btn-danger" onclick="return confirm('Yakin ingin dihapus ?')">Hapus</a>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                            @endif
                         @endforeach
                     </tbody>
                   </table>

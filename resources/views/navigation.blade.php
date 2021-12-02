@@ -2,7 +2,9 @@
 <script src="{{ asset('js/app.js') }}" defer></script>
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="/">Altversio</a>
+    <a class="navbar-brand" href="/">
+      <img src="{{ asset('/asset/img/altversio-logo.png')}}" alt="" width="150px">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

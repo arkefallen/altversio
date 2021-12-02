@@ -17,9 +17,9 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function karya_user()
+    public function karya()
     {
-        return $this->hasMany(UserKarya::class, 'karya_id', 'id');
+        return $this->hasMany(Karya::class,'author_id','id');
     }
 
     /**
