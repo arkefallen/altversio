@@ -75,6 +75,7 @@ class KaryaController extends Controller
 
         $pages = $maxKarya * ($dataKarya->currentPage()-1);
         return view('dashboard',compact('dataKarya','pages'));
+        
     }
 
     /**

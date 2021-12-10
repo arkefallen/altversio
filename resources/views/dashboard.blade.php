@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div class="form-group mx-2 col-12 col-md-3 col-lg-3">
+            <div class="form-group mx-2 col-12 col-md-3 col-lg-4">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">

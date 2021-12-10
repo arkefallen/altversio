@@ -23,6 +23,7 @@
     {{-- Icons --}}
     <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lucaburgio/iconoir@master/css/iconoir.css">
+    <link rel="icon" href="{{ asset('/asset/img/altversio-icon.png')}}">
 
     @yield('title')
 </head>
