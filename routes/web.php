@@ -21,6 +21,8 @@ Route::get('/about', 'AboutController@index')->name('about');
 
 Route::get('/donate', 'DonateController@index')->name('donate');
 
+Route::get('/bookmark', 'BookmarkController@index')->name('bookmark');
+
 // Control Karya
 
 Route::get('/dashboard', 'KaryaController@index')->name('dashboard');

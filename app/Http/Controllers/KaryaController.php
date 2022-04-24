@@ -33,7 +33,9 @@ class KaryaController extends Controller
 
         $pages = $maxKarya * ($dataKarya->currentPage()-1);
 
-        return view('dashboard',compact('dataKarya','pages'));
+        $genres = Genre::all();
+
+        return view('dashboard',compact('dataKarya','pages','genres'));
     }
 
     public function search(Request $req) 
@@ -41,18 +43,21 @@ class KaryaController extends Controller
         // dd($req);
         $maxKarya = 12;
         if ( $req->search_karya == null
-            && $req->search_filter == '-') {
+            && $req->search_filter == '-'
+            && $req->search_genre == '-') {
 
             $dataKarya = Karya::with('karyaGenre')->paginate($maxKarya);
             
         } elseif ($req->search_karya != null
-                && $req->search_filter == '-') {
+                && $req->search_filter == '-'
+                && $req->search_genre == '-') {
 
             $dataKarya = Karya::where('title','like',"%".$req->search_karya."%")->paginate($maxKarya);
             
 
         } elseif ($req->search_karya == null
-                && $req->search_filter != '-') {
+                && $req->search_filter != '-'
+                && $req->search_genre == '-') {
 
             if ($req->search_filter == 'az') {
                 $dataKarya = Karya::orderBy('title','asc')->paginate($maxKarya);
@@ -62,7 +67,54 @@ class KaryaController extends Controller
                 $dataKarya = Karya::orderBy('id','desc')->paginate($maxKarya);
             }
 
-        } else {
+        } elseif ($req->search_karya == null
+                && $req->search_filter == '-'
+                && $req->search_genre != '-') {
+
+            $dataKarya = Karya::whereHas('karyaGenre', function($query) use ($req) {
+                return $query->where('genre_id','=',$req->search_genre);
+            })->paginate($maxKarya);
+
+
+        } elseif ($req->search_karya == null
+                && $req->search_filter == '-'
+                && $req->search_genre != '-') {
+            
+            $dataKarya = Karya::whereHas('karyaGenre', function($query) use ($req) {
+                return $query->where('genre_id','=',$req->search_genre);
+            })->paginate($maxKarya);
+
+        } elseif ($req->search_karya != null
+                && $req->search_filter == '-'
+                && $req->search_genre != '-') {
+            
+            $dataKarya = Karya::where('title','like',"%".$req->search_karya."%")
+                        ->orwhereHas('karyaGenre', function($query) use ($req) {
+                                return $query->where('genre_id','=',$req->search_genre);
+                            })->paginate($maxKarya);
+
+        } elseif ($req->search_karya == null
+                && $req->search_filter != '-'
+                && $req->search_genre != '-') {
+
+            if ($req->search_filter == 'az') {
+                $dataKarya = Karya::whereHas('karyaGenre', function($query) use ($req) {
+                    return $query->where('genre_id','=',$req->search_genre);
+                })->orderBy('title','asc')->paginate($maxKarya);
+            } elseif ($req->search_filter == 'za') {
+                $dataKarya = Karya::whereHas('karyaGenre', function($query) use ($req) {
+                    return $query->where('genre_id','=',$req->search_genre);
+                })->orderBy('title','desc')->paginate($maxKarya);
+            } else {
+                $dataKarya = Karya::whereHas('karyaGenre', function($query) use ($req) {
+                    return $query->where('genre_id','=',$req->search_genre);
+                })->orderBy('id','desc')->paginate($maxKarya);;
+            }
+
+        } elseif ($req->search_karya != null
+                && $req->search_filter != '-'
+                && $req->search_genre == '-') {
+
             if ($req->search_filter == 'az') {
                 $dataKarya = Karya::where('title','like',"%".$req->search_karya."%")->orderBy('title','asc')->paginate($maxKarya);
             } elseif ($req->search_filter == 'za') {
@@ -71,10 +123,30 @@ class KaryaController extends Controller
                 $dataKarya = Karya::where('title','like',"%".$req->search_karya."%")->orderBy('id','desc')->paginate($maxKarya);
             }
 
+        } else {
+
+            if ($req->search_filter == 'az') {
+                $dataKarya = Karya::where('title','like',"%".$req->search_karya."%")
+                ->orwhereHas('karyaGenre', function($query) use ($req) {
+                    return $query->where('genre_id','=',$req->search_genre);
+                })->orderBy('title','asc')->paginate($maxKarya);
+            } elseif ($req->search_filter == 'za') {
+                $dataKarya = Karya::where('title','like',"%".$req->search_karya."%")
+                ->orwhereHas('karyaGenre', function($query) use ($req) {
+                    return $query->where('genre_id','=',$req->search_genre);
+                })->orderBy('title','desc')->paginate($maxKarya);
+            } else {
+                $dataKarya = Karya::where('title','like',"%".$req->search_karya."%")
+                ->orwhereHas('karyaGenre', function($query) use ($req) {
+                    return $query->where('genre_id','=',$req->search_genre);
+                })->orderBy('id','desc')->paginate($maxKarya);;
+            }
+
         }
 
         $pages = $maxKarya * ($dataKarya->currentPage()-1);
-        return view('dashboard',compact('dataKarya','pages'));
+        $genres = Genre::all();
+        return view('dashboard',compact('dataKarya','pages','genres'));
         
     }
 
@@ -110,9 +182,11 @@ class KaryaController extends Controller
         DB::beginTransaction();
 
         try {
+
             $karya = new Karya;
             $karya->title = $req->title;
 
+            // Kondisi ketika prompt nya kosong
             if ($req->link_prompt == null) {
                 $karya->link_prompt = '-';
             } else {
@@ -132,6 +206,7 @@ class KaryaController extends Controller
 
             $karya->thumbnail = 'asset/tmb/'.$imageFile;
 
+
             $user_id = Auth::id();
 
             $karya->author_id = $user_id;
@@ -140,19 +215,26 @@ class KaryaController extends Controller
             $karya_id = $karya['id'];
 
         } catch (\Exception $e) {
+
             DB::rollback();
             return $e->getMessage();
         }
 
         try {
+
             for ( $i=0; $i < count($req->genre); $i++) { 
                 $genre = new KaryaGenre;
+
                 $genre->karya_id = $karya_id;
+
+                // Ambil id genre dengan nyari lewat nama genre
                 $queryGenre = DB::select('select id from genre where name = ?', [$req->genre[$i]]);
 
                 $genre->genre_id = $queryGenre[0]->id;
+
                 $genre->save();
             }
+
         } catch (\Exception $e) {
             DB::rollback();
             return $e->getMessage();
@@ -184,7 +266,8 @@ class KaryaController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+     **/
+
     public function edit($id)
     {
         $karya = Karya::with('karyaGenre')->find($id);
@@ -204,6 +287,7 @@ class KaryaController extends Controller
      */
     public function update(Request $req, $id)
     {
+
         $this->validate($req, [
             'title' => 'required|string',
             'link_karya' => 'required|string',
@@ -248,11 +332,16 @@ class KaryaController extends Controller
             
             // Kalau ada genre baru ditambahkan
             $name_nowGenreKarya = array();
-            foreach ($queryKaryaGenre as $kg ) {
+
+            foreach ( $queryKaryaGenre as $kg ) {
+                
+                // Cari genre yang dipunyai karya kita sekarang
                 if ($kg->karya_id == $karya_id && $kg->genre->id == $kg->genre_id) {
                     array_push($name_nowGenreKarya,$kg->genre->name);
                 }
+                
             }
+
             
             for ( $i=0 ; $i < count($req->genre); $i++) { 
                 if ( !in_array($req->genre[$i],$name_nowGenreKarya) ) {

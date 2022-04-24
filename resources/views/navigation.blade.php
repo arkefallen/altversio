@@ -35,6 +35,10 @@
               <a class="nav-link" href="/donate">Donasi</a>
             </li>
 
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="#">Bookmark</a>
+            </li>
+
             <li class="nav-item mx-2 mb-2 mt-2 w-100">
               <a id="karyaDropdown" class="nav-link dropdown-toggle btn btn-primary rounded-pill py-2 px-3 text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 Unggah Karyamu
@@ -49,7 +53,8 @@
                 <a href="/dashboard/manage" class="dropdown-item d-flex align-items-center">
                   <box-icon name='edit' class="mx-1" color="#A375CF" ></box-icon>
                   <p class="mx-2" style="margin-bottom:0 !important;">Kelola Karya</p>
-                </a>  
+                </a>
+
               </div>
             </li>
 

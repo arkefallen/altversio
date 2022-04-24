@@ -10,7 +10,23 @@
         <p class="lead">Yuk cari AU favorit kamu disini !</p>
         <form class="w-100 row"  action="{{ route('karya.search') }}" method="get">
             @csrf
-            <div class="form-group mx-2 col-12 col-md-5 col-lg-5">
+            <div class="form-group mx-2 col-12 col-lg-2">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                      <box-icon name='collection' color='#8c8888' ></box-icon>
+                  </span>
+                </div>
+                <select class="form-select form-select-sm" id="filterGenre" name="search_genre">
+                  <option selected value="-">- Genre -</option>
+                  @foreach ($genres as $genre)
+                    <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group mx-2 col-12 col-lg-5">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">
@@ -21,14 +37,14 @@
                 </div>
             </div>
 
-            <div class="form-group mx-2 col-12 col-md-3 col-lg-4">
+            <div class="form-group mx-2 col-12 col-lg-2">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">
                       <box-icon name='filter-alt' color='#8c8888' ></box-icon>
                   </span>
                 </div>
-                <select class="form-control custom-select" id="filterGenre" name="search_filter">
+                <select class="form-control custom-select" id="filterSearch" name="search_filter">
                   <option selected value="-">- Filter -</option>
                   <option value="az">Urut A-Z</option>
                   <option value="za">Urut Z-A</option>
@@ -37,9 +53,15 @@
               </div>
             </div>
 
-            <div class="form-group mx-2 col-12 col-md-2 col-lg-2 ">
-              <button class="btn btn-primary w-100" type="submit">
+            <div class="form-group mx-2 col-12 col-lg-1 ">
+              <button class="btn btn-primary w-100 mb-3" type="submit">
                 Cari
+              </button>  
+            </div>
+
+            <div class="form-group mx-2 col-12 col-lg-1 ">
+              <button class="btn btn-outline-secondary w-100" type="submit">
+                Reset
               </button>  
             </div>
 
